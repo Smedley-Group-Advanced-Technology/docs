@@ -44,3 +44,12 @@ a[nav-tabs-item] {
   background-size: cover;
   opacity: 0.875;
 }
+
+/* Resize navbar logo */
+#navbar-logo,
+#navbar-logo img,
+header img,
+nav img {
+  height: 32px !important;
+  width: auto !important;
+}
