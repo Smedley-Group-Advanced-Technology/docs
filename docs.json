@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "sequoia",
+  "theme": "mint",
   "name": "Playbook",
   "description": "SOPs",
   "colors": {
@@ -61,7 +61,7 @@
     }
   },
   "fonts": {
-    "family": "Roboto",
+    "family": "Inter",
     "weight": 300
   }
 }
