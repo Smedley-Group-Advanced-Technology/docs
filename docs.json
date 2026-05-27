@@ -1,8 +1,8 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "luma",
-  "name": "Playbook",
-  "description": "SOPs",
+  "name": "FAT Racing Playbook",
+  "description": "Extensive knowledge base for FAT Racing programme",
   "colors": {
     "primary": "#166E3F",
     "light": "#26BD6C",
@@ -34,7 +34,7 @@
       }
     ]
   },
-  "logo": "/images/FAT_Karting_League-Vertical_Logo-Master-RGB-White.png",
+  "logo": "/logo/dark.svg",
   "navbar": {
     "primary": {
       "type": "button",
