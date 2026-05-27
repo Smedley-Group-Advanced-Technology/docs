@@ -21,57 +21,6 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Onboarding",
-        "groups": [
-          {
-            "group": "Welcome",
-            "pages": ["index"]
-          },
-          {
-            "group": "Your first days",
-            "pages": []
-          },
-          {
-            "group": "Tools & access",
-            "pages": []
-          }
-        ]
-      },
-      {
-        "tab": "HR & People",
-        "groups": [
-          {
-            "group": "Overview",
-            "pages": []
-          },
-          {
-            "group": "Benefits & time off",
-            "pages": []
-          },
-          {
-            "group": "Growth & pay",
-            "pages": []
-          }
-        ]
-      },
-      {
-        "tab": "IT & Security",
-        "groups": [
-          {
-            "group": "Overview",
-            "pages": []
-          },
-          {
-            "group": "Access & devices",
-            "pages": []
-          },
-          {
-            "group": "Security training",
-            "pages": []
-          }
-        ]
-      },
-      {
         "tab": "Policies",
         "groups": [
           {
@@ -91,38 +40,6 @@
             "icon": "clipboard-list",
             "pages": [
               "sops/brake-pad-replacement.mdx"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Engineering",
-        "groups": [
-          {
-            "group": "Overview",
-            "pages": ["engineering/index"]
-          },
-          {
-            "group": "Setup & deployment",
-            "pages": [
-              "engineering/dev-setup",
-              "engineering/deployment"
-            ]
-          },
-          {
-            "group": "Incident response",
-            "pages": [
-              "engineering/incident-response/index",
-              "engineering/incident-response/on-call",
-              "engineering/incident-response/postmortem"
-            ]
-          },
-          {
-            "group": "Architecture",
-            "pages": [
-              "engineering/architecture/index",
-              "engineering/architecture/services-overview",
-              "engineering/architecture/data-models"
             ]
           }
         ]
