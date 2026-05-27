@@ -85,6 +85,13 @@
           {
             "group": "Remote work",
             "pages": []
+          },
+          {
+            "group": "SOPs",
+            "icon": "clipboard-list",
+            "pages": [
+              "sops/brake-pad-replacement.mdx"
+            ]
           }
         ]
       },
