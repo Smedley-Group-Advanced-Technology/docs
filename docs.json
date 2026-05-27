@@ -24,18 +24,6 @@
         "tab": "Policies",
         "groups": [
           {
-            "group": "Overview",
-            "pages": []
-          },
-          {
-            "group": "Conduct & spend",
-            "pages": []
-          },
-          {
-            "group": "Remote work",
-            "pages": []
-          },
-          {
             "group": "SOPs",
             "icon": "clipboard-list",
             "pages": [
