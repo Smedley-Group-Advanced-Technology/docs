@@ -27,7 +27,7 @@
 	  "global" : {
 		  "anchors": [
 			{
-				"anchor": "Home"
+				"anchor": "Home",
 				"icon": "home"
 			}
 		]	
