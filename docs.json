@@ -12,6 +12,9 @@
   "icons": {
     "library": "lucide"
   },
+  "appearance": {
+	  "default": "dark",
+	  "strict": true
   "metadata": {
     "timestamp": true
   },
@@ -40,6 +43,7 @@
 			},
 			{
 			  "group": "Event Operations",
+			  "directory": "accordion",
 			  "icon": "clipboard-check",
 			  "pages": [
 				"sops/event/pre-event-checklist",
@@ -74,5 +78,11 @@
   "fonts": {
     "family": "Inter",
     "weight": 300
+  },
+  "styling": {
+	  "eyebrows": "breadcrumbs"
+  },
+  "background": {
+    "decoration": "gradient"
   }
 }
