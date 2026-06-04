@@ -1,0 +1,141 @@
+---
+title: "Alpha Timing"
+description: "How to import driver lists into Alpha Timing Admin, handle last minute bookings, and manage driver entries."
+icon: "timer"
+---
+
+## Overview
+
+Once all bookings are complete and an event weekend is approaching, driver data must be imported into Alpha Timing (AT) Admin to ensure timing data is recorded for all drivers participating in any FKL event.
+
+| | UK | US |
+|--|--|--|
+| **When to import** | Before Sign-On begins on event day | After Sign-On has completed |
+
+**Requirements:** Laptop, internet connection, access to OD, AT Admin Site, and Sign On website.
+
+---
+
+## Importing Driver Lists
+
+<Steps>
+  <Step title="Export driver list from OD">
+    Export the relevant driver list from the OD for the session — Sat AM, Sat PM, or Sun Race. See [Exporting Data to Alpha Timing](/guides/cel-fkl/operational-dashboard#exporting-data-to-alpha-timing) for steps.
+  </Step>
+  <Step title="Select the correct hub">
+    Once in AT, confirm the correct hub is selected — check the top left next to the house icon.
+  </Step>
+  <Step title="Open the event">
+    Click on the relevant event you need to import drivers to.
+  </Step>
+  <Step title="Navigate to Import Entries">
+    Open the event, select the **TOOLS** dropdown, and select **Import Entries**.
+  </Step>
+  <Step title="Upload the CSV file">
+    Click **CHOOSE FILE** and select the CSV file exported from the OD. Once selected, click **Upload File**.
+
+    <Warning>
+      Always make sure you select the correct file to import. Importing the wrong file will require you to manually delete every entry from the event in AT.
+    </Warning>
+  </Step>
+  <Step title="Map the fields">
+    Ensure the correct fields are mapped for the import. Fields required are: **First Name, Last Name, ClassCode, CustomerIdentifier, fklid,** and **Level**.
+
+    If you have done an import before, select the latest field mappings used and they will automatically populate.
+  </Step>
+  <Step title="Complete the upload">
+    Once all mappings are filled, press **NEXT**, select the **UPDATE Customer Details** dropdown, then click **Upload**. Wait for the upload to complete.
+  </Step>
+</Steps>
+
+---
+
+## Last Minute Bookings
+
+There may be cases where last minute bookings come in and require the import process to be repeated.
+
+<Note>
+  Ensure the person allocated to this task has access to the Teams Channel **FKL [HubLocation] PROD**, where notifications are raised each time a booking comes in.
+</Note>
+
+<Steps>
+  <Step title="Open the notification">
+    Click the notification in the Teams FKL PROD channel.
+  </Step>
+  <Step title="View the ticket">
+    Select **Click here to view ticket**.
+  </Step>
+  <Step title="Export the driver">
+    Open the ticket and click the green button (hover to confirm it says **Export to AT**). Amend power level and class if necessary, then export the file to download a single ticket CSV.
+  </Step>
+  <Step title="Import into Sign On website">
+    Import the CSV into the Sign On website and repeat the Sign On process.
+  </Step>
+  <Step title="Export all to AT">
+    Once Sign On is complete, export all to AT as normal.
+  </Step>
+</Steps>
+
+<Warning>
+  If you do not add the last minute driver into the Sign On website, they will not be in Driver Training and will not be allocated a kart or appear on the coach's tablet.
+</Warning>
+
+---
+
+## Moving a Driver to a Different Class
+
+If a driver needs to be moved to a different class, this must be updated in both AT and on the ticket in the OD.
+
+<Steps>
+  <Step title="Open the driver profile in AT">
+    Select the event, then select the class the driver is currently booked into. Select the driver's name to open their profile.
+  </Step>
+  <Step title="Use the Task menu">
+    In the bottom left corner, find the **Task** section. Click it and select **Move to different class (for the same event)**.
+  </Step>
+  <Step title="Select the correct class">
+    Select the correct class and click **Update Entry**.
+  </Step>
+  <Step title="Re-sync entries">
+    Ask the timekeeper to **re-sync entries** on the timing software so the driver's data is updated and recorded correctly during sessions.
+  </Step>
+</Steps>
+
+---
+
+## Deleting a Driver from an Event
+
+<Steps>
+  <Step title="Open the driver profile in AT">
+    Select the event, select the class they are in, and select the driver to open their profile.
+  </Step>
+  <Step title="Remove the driver">
+    At the bottom right of the profile, click **Remove** to delete the entry entirely from the event.
+  </Step>
+</Steps>
+
+---
+
+## Driver Sign-On Links (UK Only)
+
+For all FKL Hub 1 events, all parents of drivers must sign a declaration acknowledging that motorsport is a dangerous activity. For Regional Events and Saturday practice, the form is created by FKL. For Pro Events, FKL uses a Motorsport UK (MSUK) standard disclaimer.
+
+Links are sent to all drivers on Thursdays prior to an event and resent up to three times until all drivers have signed. A verbal reminder is also given during the driver's briefing on event day.
+
+<Steps>
+  <Step title="Select the event">
+    Select the desired event from the list in AT.
+  </Step>
+  <Step title="Send sign-on links">
+    Select **MESSAGES** and then **Send Signing-on Links**.
+  </Step>
+  <Step title="Confirm and send">
+    A page will open confirming the email text. Scroll to the bottom and select **SEND EMAIL**.
+  </Step>
+  <Step title="Check sign-on status">
+    To view sign-on status or missing signed forms, select **RECEPTION**, then select the event and view the number of **NO** entries under sign-on.
+  </Step>
+  <Step title="Resend if needed">
+    Use **Resend Sign-on Links** to re-send only to drivers who have not yet completed the form.
+  </Step>
+</Steps>

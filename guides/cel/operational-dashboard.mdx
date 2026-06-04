@@ -1,0 +1,148 @@
+---
+title: "Operational Dashboard"
+description: "How to use the FKL Operational Dashboard to manage driver data, tickets, timing reports, and exports."
+icon: "gauge"
+---
+
+## Overview
+
+The Operational Dashboard (OD) is the central tool for managing all driver data across all FAT Karting League hubs globally. It is used by Sales and Ops teams to manage driver records, ticket sales, timing data, power levels, and customer emails.
+
+---
+
+## System Requirements
+
+- **Supported browsers:** Chrome, Safari
+- **Login:** If you require admin access, use the **Contact Support** button on the OD. Once created, use your email address to log in and input your email address as the password — you will then be prompted to change it.
+
+---
+
+## Setup
+
+Once logged in, choose your default dashboard view based on the hub region you work for — UK for Hub 1, US-MW for Hub 2, etc.
+
+<Warning>
+  If you see two warning icons on the Tickets and Drivers buttons, this means there are problematic tickets and duplicate drivers. Fix these as soon as possible.
+</Warning>
+
+---
+
+## Viewing Timing Data
+
+<Steps>
+  <Step title="Hover over Timing">
+    From the main dashboard, hover over the **TIMING** section.
+  </Step>
+  <Step title="Select the event">
+    Select the desired event to view timing data for.
+  </Step>
+  <Step title="Review the data">
+    Review the timing data view. If errors appear, contact the relevant CEL for your hub to fix the issue.
+  </Step>
+</Steps>
+
+<Note>
+  Timing problems usually require fixes on the Timing Laptop and can be completed after an event. However, it is better to spot and fix issues before the end of an event directly at the race track.
+</Note>
+
+---
+
+## Exporting Data to Alpha Timing
+
+This function exports driver data — Full Name, Email Address, Power Level, and Driver ID — to be imported into the timing system for live timing data collection. Timing data serves two purposes: Driver Training Program progress and TalentID data collection and analysis.
+
+<Warning>
+  It is extremely important that all data is exported correctly from the OD before being imported into AT. Ensure there are no **PROBLEMATIC** tickets shown before any export — fix these using Automatic Fix or investigate the issue individually.
+</Warning>
+
+<Steps>
+  <Step title="Select the event">
+    Select the desired event you'd like to export driver lists from.
+  </Step>
+  <Step title="Click Export">
+    Click **Export**. If exporting Saturday practice data, select either **AM** or **PM** — these are two separate files covering two separate events in AT. For race day, separately export the Practice Season Pass, Race Season Pass, Individual Event for Saturday, and Individual Event for Sunday.
+  </Step>
+  <Step title="Review and adjust drivers">
+    Before exporting, you can manually update and select which drivers to export, and update class, weights, and power levels.
+  </Step>
+  <Step title="Export and import">
+    Export the file and proceed to import into AT. See the [Alpha Timing guide](/guides/cel-fkl/alpha-timing) for import steps.
+  </Step>
+</Steps>
+
+<Note>
+  It is recommended to export drivers once to ensure all booked drivers are present on Sign On, then complete one import only. For last minute bookings, use the clock button on the driver to export the AT file.
+</Note>
+
+### Export Button Types
+
+There are two different export buttons:
+
+- **Green XL button** — available only on tickets. Exports the ticket (and the driver) into AT. Use this when you have a ticket.
+- **Orange Last Minute button** — available only on a driver. Exports the driver into AT even if no ticket is available for them.
+
+---
+
+## Trash Can Functions
+
+Use the trash can options carefully. The available actions are:
+
+- **Cancel Only** — invalidates a ticket and raises a FOC ticket. Results in £0 revenue loss.
+- **Cancel & Move to Another Event** — invalidates the wrong ticket but moves it to the correct event without losing revenue.
+- **Cancel and Create Voucher** — cancels the ticket and raises a voucher for the customer to rebook the correct or a future event.
+- **Cancel & Refund** — cancels and refunds the customer.
+
+<Warning>
+  Do not touch the **Cancel & Refund** feature.
+</Warning>
+
+---
+
+## Duplicate Drivers
+
+If two driver records clearly belong to the same person, they must be merged into one.
+
+<Steps>
+  <Step title="Identify the duplicate">
+    Review both records. The one with an existing FKL Driver ID, power level, and class is the one to keep. The newer record without race history is the one to remove.
+  </Step>
+  <Step title="Delete the newer record">
+    On the newer record, click the red bin icon. A modal will appear stating the driver cannot be simply deleted because they have a ticket.
+  </Step>
+  <Step title="Reassign the ticket">
+    Search for the driver you want to keep and select them as the destination for the ticket transfer.
+  </Step>
+  <Step title="Confirm deletion">
+    Click **Yes, delete it**. You will end up with one active driver record with both tickets associated.
+  </Step>
+</Steps>
+
+---
+
+## Identifying Timing Session Issues
+
+<Steps>
+  <Step title="Log into the dashboard">
+    Log in to the OD.
+  </Step>
+  <Step title="Click on Timing">
+    Navigate to the **TIMING** section.
+  </Step>
+  <Step title="Select the event">
+    Select the current event, for example Pro Round 3.
+  </Step>
+  <Step title="Check for error signals">
+    Review sessions and identify any error signals. Hover over a signal to read the information about the issue.
+  </Step>
+  <Step title="Act accordingly">
+    Respond based on the problem. For example — if a driver has not turned up, remove them from timings. If a driver has arrived or booked late, ensure they are added to AT Admin first, then re-sync entries in AT.
+  </Step>
+</Steps>
+
+---
+
+## Editing Driver Data
+
+Driver data can be amended on the event ticket (if the event date has not passed) or directly on the driver's profile.
+
+Fields that may need updating include: weight, height, class, power level, surname, and first name. Any changes must be updated before exporting data for re-import into the Driver Training software.

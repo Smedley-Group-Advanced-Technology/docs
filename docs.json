@@ -61,6 +61,17 @@
 			  "pages": [
 				"guides/simtellab/installing-simtellab"
 			  ]
+			},
+			{
+			  "group": "CEL",
+			  "pages": [
+				"guides/cel/index",
+				"guides/cel/operational-dashboard",
+				"guides/cel/alpha-timing",
+				"guides/cel/driver-sign-on",
+				"guides/cel/driver-training-program",
+				"guides/cel/vivenu"
+			  ]
 			}
 		  ]
 		},
