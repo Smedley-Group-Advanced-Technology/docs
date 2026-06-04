@@ -13,82 +13,107 @@
     "library": "lucide"
   },
   "appearance": {
-	  "default": "dark",
-	  "strict": true
+    "default": "dark",
+    "strict": true
   },
   "metadata": {
     "timestamp": true
   },
   "contextual": {
     "options": ["copy", "assistant"],
-	"display": "toc"
+    "display": "toc"
   },
   "navigation": {
-	  "tabs": [
-		{
-		  "tab": "SOPs",
-		  "groups": [
-			{
-			  "group": "Race Prep",
-			  "icon": "wrench",
-			  "pages": [
-				"sops/rw-prep/preparing-for-rw"
-			  ]
-			},
-			{
-			  "group": "Engineering & Data",
-			  "icon": "chart-line",
-			  "pages": [
-				"engineering/setup-sweeps"
-			  ]
-			},
-			{
-			  "group": "Event Operations",
-			  "icon": "clipboard-check",
-			  "pages": [
-				"sops/event/pre-event-checklist",
-				"sops/event/in-event-checklist",
-				"sops/event/post-event-checklist"
-			  ]
-			}
-		  ]
-		},
-		{
-		  "tab": "Guides",
-		  "groups": [
-			{
-			  "group": "SimTelLab",
-			  "pages": [
-				"guides/simtellab/installing-simtellab"
-			  ]
-			},
-			{
-			  "group": "CEL",
-			  "pages": [
-				"guides/cel/index",
-				"guides/cel/operational-dashboard",
-				"guides/cel/alpha-timing",
-				"guides/cel/driver-sign-on",
-				"guides/cel/driver-training-program",
-				"guides/cel/vivenu"
-			  ]
-			}
-		  ]
-		},
-		{
-			"tab": "Changelog",
-			"groups": [
-			{
-				"group": "Changelog",
-				"icon": "calendar",
-				"pages": [
-					"changelog/product-updates"
-					]
-			}
-			]
-		}
-	  ]
-	},
+    "tabs": [
+      {
+        "tab": "SOPs",
+        "groups": [
+          {
+            "group": "Race Prep",
+            "icon": "wrench",
+            "pages": [
+              "sops/rw-prep/folder-structure",
+              "sops/rw-prep/preparing-for-rw"
+            ]
+          },
+          {
+            "group": "Engineering & Data",
+            "icon": "chart-line",
+            "pages": [
+              "engineering/setup-sweeps"
+            ]
+          },
+          {
+            "group": "Event Operations",
+            "icon": "clipboard-check",
+            "pages": [
+              {
+                "dropdown": "Checklists",
+                "icon": "list-check",
+                "pages": [
+                  "sops/event/pre-event-checklist",
+                  "sops/event/in-event-checklist",
+                  "sops/event/post-event-checklist"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "SimTelLab",
+            "icon": "laptop",
+            "pages": [
+              "guides/simtellab/installing-simtellab"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "OD",
+        "groups": [
+          {
+            "group": "CEL",
+            "icon": "flag-checkered",
+            "pages": [
+              "guides/cel/index",
+              "guides/cel/operational-dashboard",
+              "guides/cel/alpha-timing",
+              "guides/cel/driver-sign-on",
+              "guides/cel/driver-training-program",
+              "guides/cel/vivenu"
+            ]
+          },
+          {
+            "group": "Charging Tech",
+            "icon": "battery-full",
+            "pages": [
+              "od/ct/index",
+              "od/ct/setup",
+              "od/ct/start",
+              "od/ct/data-upload",
+              "od/ct/stop-and-backup"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Changelog",
+        "groups": [
+          {
+            "group": "Changelog",
+            "icon": "calendar",
+            "pages": [
+              "changelog/product-updates"
+            ]
+          }
+        ]
+      }
+    ]
+  },
   "logo": "/logo/dark.svg",
   "navbar": {
     "primary": {
@@ -102,7 +127,7 @@
     "weight": 300
   },
   "styling": {
-	  "eyebrows": "breadcrumbs"
+    "eyebrows": "breadcrumbs"
   },
   "background": {
     "decoration": "gradient"

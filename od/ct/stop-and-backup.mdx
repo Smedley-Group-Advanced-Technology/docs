@@ -1,0 +1,81 @@
+---
+title: "Stopping & Backing Up"
+sidebarTitle: "Stopping"
+description: "How to stop the application and back up the database at the end of each event day."
+---
+
+## Overview
+
+At the end of each event day, the application must be stopped and the database backed up. The backup uploads InfluxDB, NATS, and Logs to S3 as a single archive.
+
+<Note>
+  The backup must be completed at the end of both Saturday and Sunday. On both evenings, complete the backup and start InfluxDB fresh — this prevents the database accumulating data across multiple weekends and becoming very large.
+</Note>
+
+<Warning>
+  This should only be done on a stable internet connection with time to leave it running. The database is large and depending on the connection, the upload to S3 can take several hours.
+</Warning>
+
+---
+
+## Prerequisites
+
+- The application is currently running
+- Stable internet connection
+- Time available to leave the NUC running until the backup completes
+
+---
+
+## Steps
+
+<Steps>
+  <Step title="Run the stop script">
+    In the project directory, double-click `stop_application.bat` to run it.
+  </Step>
+  <Step title="Confirm the configuration">
+    The script will display the current configuration — it uses the region last provided during setup. Take a moment to confirm it is correct before proceeding.
+
+    You will then be prompted: **Do you want to complete the backup procedure?**
+  </Step>
+  <Step title="Choose whether to back up">
+    Enter `y` to proceed with the backup, or `n` to skip it and stop the application only.
+  </Step>
+  <Step title="Choose whether to start fresh">
+    If you selected `y`, you will be asked: **Do you want a fresh InfluxDB database once the backup is completed?**
+
+    Enter `y` to clear InfluxDB after backup. This is the recommended option to prevent data accumulating across multiple weekends. Enter `n` if you do not want to clear it.
+
+    <Note>
+      Logs are automatically cleared after a successful backup regardless of this selection.
+    </Note>
+  </Step>
+  <Step title="Review and confirm the summary">
+    You will be shown a summary of the options you have selected. Enter `y` to proceed, or `n` to exit without making any changes.
+
+    ![Stop script summary](/images/sops/charging-monitoring/stop-summary.png)
+  </Step>
+  <Step title="Wait for the backup to complete">
+    The backup will run in three stages: InfluxDB, NATS, and Logs. Once all three are complete, the combined archive will be uploaded to S3.
+
+    ![Backup in progress](/images/sops/charging-monitoring/stop-backup-progress.png)
+
+    ![Upload to S3](/images/sops/charging-monitoring/stop-s3-upload.png)
+
+    Leave the NUC running until this completes.
+  </Step>
+  <Step title="Application stops automatically">
+    Once the backup and upload are complete, the application will stop automatically. If you selected a fresh InfluxDB and the upload was successful, InfluxDB will be cleared. A summary will be displayed at the bottom of the terminal.
+
+    ![Stop complete](/images/sops/charging-monitoring/stop-complete.png)
+  </Step>
+</Steps>
+
+---
+
+## If Anything Fails
+
+Screenshot the terminal window showing the error and contact the Software Development team:
+
+- David Shortland — david.shortland@smedleygroup.com
+- Gerri Bascianelli — gerardo.bascianelli@smedleygroup.com
+- Matt Smith — matt.smith@smedleygroup.com

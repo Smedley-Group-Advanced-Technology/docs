@@ -1,0 +1,50 @@
+---
+title: "Charging Monitoring Data Upload"
+description: "Guides for setting up, running, and backing up the telemetry receiver application at events."
+---
+
+## Overview
+
+This section covers the end-to-end process for running the charging monitoring application at an FKL event — from pre-event setup through to post-event backup and shutdown.
+
+Telemetry data collected during the event is uploaded to S3 and ingested by the telemetry pipeline for analysis by the central hub.
+
+---
+
+## What's in This Section
+
+<CardGroup cols={2}>
+  <Card title="Setting Up the Application" icon="wrench" href="/sops/charging-monitoring/setup">
+    Run once before each event weekend to pull the latest build and configure the hub region.
+  </Card>
+  <Card title="Starting the Application" icon="play" href="/sops/charging-monitoring/start">
+    Start the application before sign-on begins on event day.
+  </Card>
+  <Card title="Charging Data Upload" icon="upload" href="/sops/charging-monitoring/data-upload">
+    Export and upload charging data at the end of each day during the event.
+  </Card>
+  <Card title="Stopping & Backing Up" icon="stop" href="/sops/charging-monitoring/stop-and-backup">
+    Stop the application and back up the database at the end of each event day.
+  </Card>
+</CardGroup>
+
+---
+
+## When to Run Each Step
+
+| Phase | Task |
+|--|--|
+| Pre-event at factory or track | Setting up the application |
+| Pre-event at track | Starting the application |
+| In-event (end of each day) | Charging data upload |
+| Post-event at factory or track | Stopping and backing up |
+
+---
+
+## If Anything Fails
+
+Screenshot the terminal window showing the error and contact the Software Development team:
+
+- David Shortland — david.shortland@smedleygroup.com
+- Gerri Bascianelli — gerardo.bascianelli@smedleygroup.com
+- Matt Smith — matt.smith@smedleygroup.com

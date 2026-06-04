@@ -1,0 +1,61 @@
+---
+title: "Setting Up the Application"
+description: "How to set up the charging monitoring application before an event weekend."
+---
+
+## Overview
+
+Before an event weekend, you must set up the application to pull the latest production changes and configure the correct hub region. This is done by running a batch script.
+
+<Note>
+  This only needs to be done once before each event. You do not need to run setup during the event itself, except in special cases.
+</Note>
+
+---
+
+## Prerequisites
+
+- Access to the event laptop (NUC)
+- Internet connection to pull images from S3
+
+---
+
+## Steps
+
+<Steps>
+  <Step title="Run the setup script">
+    On the Desktop, double-click `setup_application.bat` to run it.
+
+    ![Setup script on desktop](/images/sops/charging-monitoring/setup-desktop.png)
+  </Step>
+  <Step title="Enter the hub region">
+    A command window will appear asking for the hub region. Input the correct number and press Enter.
+
+    ```
+    1 - UK
+    2 - US-MW
+    3 - US-CA
+    4 - US-TX
+    ```
+
+    ![Hub region selection](/images/sops/charging-monitoring/setup-region.png)
+  </Step>
+  <Step title="Wait for images to pull">
+    The application will begin pulling images and building all containers. Once complete, all elements will show the message **"Pulled"**.
+
+    ![Pulling images complete](/images/sops/charging-monitoring/setup-pulled.png)
+  </Step>
+  <Step title="Application starts automatically">
+    The application will then automatically start all containers. When complete, all elements will show a green message. You may now close the window.
+  </Step>
+</Steps>
+
+---
+
+## If Anything Fails
+
+Screenshot the terminal window showing the error and contact the Software Development team:
+
+- David Shortland — david.shortland@smedleygroup.com
+- Gerri Bascianelli — gerardo.bascianelli@smedleygroup.com
+- Matt Smith — matt.smith@smedleygroup.com
