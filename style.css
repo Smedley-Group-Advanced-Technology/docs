@@ -32,6 +32,11 @@ a[nav-tabs-item] {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* sidebar nav items */
+#sidebar a {
+  font-weight: 500;
+}
+
 .kb-feature-card {
   background-color: rgb(var(--foreground-light, 17 24 39));
 }

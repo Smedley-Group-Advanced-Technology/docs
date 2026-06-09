@@ -20,7 +20,10 @@
     "timestamp": true
   },
   "contextual": {
-    "options": ["copy", "assistant"],
+    "options": [
+      "copy",
+      "assistant"
+    ],
     "display": "toc"
   },
   "navigation": {
@@ -34,7 +37,8 @@
             "icon": "hand-wave",
             "pages": [
               "introduction/welcome",
-              "introduction/the-team"
+              "introduction/the-team",
+              "introduction/new-to-fkl"
             ]
           }
         ]
@@ -153,5 +157,11 @@
   },
   "background": {
     "decoration": "gradient"
-  }
+  },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/introduction/welcome"
+    }
+  ]
 }
