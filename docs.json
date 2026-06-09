@@ -26,58 +26,6 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "SOPs",
-        "groups": [
-          {
-            "group": "Overview",
-            "icon": "house",
-            "pages": ["sops/index"]
-          },
-          {
-            "group": "Race Prep",
-            "icon": "wrench",
-            "pages": [
-              "sops/rw-prep/folder-structure",
-              "sops/rw-prep/preparing-for-rw"
-            ]
-          },
-          {
-            "group": "Engineering & Data",
-            "icon": "chart-line",
-            "pages": [
-              "engineering/setup-sweeps"
-            ]
-          },
-          {
-            "group": "Event Operations",
-            "icon": "clipboard-check",
-            "pages": [
-              {
-                "dropdown": "Checklists",
-                "icon": "list-check",
-                "pages": [
-                  "sops/event/pre-event-checklist",
-                  "sops/event/in-event-checklist",
-                  "sops/event/post-event-checklist"
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Guides",
-        "groups": [
-          {
-            "group": "SimTelLab",
-            "icon": "laptop",
-            "pages": [
-              "guides/simtellab/installing-simtellab"
-            ]
-          }
-        ]
-      },
-      {
         "tab": "Operator Dashboard",
         "groups": [
           {
