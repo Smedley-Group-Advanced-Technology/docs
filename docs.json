@@ -1,4 +1,4 @@
-{
+﻿{
   "$schema": "https://mintlify.com/docs.json",
   "theme": "luma",
   "name": "FAT Karting League Playbook",
@@ -88,8 +88,8 @@
               {
                 "group": "Battery Health Analysis",
                 "pages": [
-                  "od/rs/battery-health/index",
-                  "od/rs/battery-health/battery-health-analysis"
+                  "od/rs/battery-health-index",
+                  "od/rs/battery-health-analysis"
                 ]
               }
             ]
