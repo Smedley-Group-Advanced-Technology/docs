@@ -1,6 +1,6 @@
 ---
 title: "Charging Data Upload"
-sidebarTitle: "Upload"
+sidebarTitle: "Upload Data"
 description: "How to export and upload charging data at the end of each event day."
 ---
 
@@ -23,44 +23,48 @@ At the end of each day during an event, charging data must be exported from the 
 <Steps>
   <Step title="Open the Telemetry WebApp">
     Ensure the application is running, then open a browser and navigate to `http://localhost:4200`. You should see the Telemetry WebApp interface.
+	
+	![Home UI](/images/od/ct/upload-home.png)
   </Step>
   <Step title="Select the date">
     In **Step 1**, select the date you want to export — usually today's date.
 
-    ![Select date](/images/sops/charging-monitoring/upload-step1-date.png)
+    ![Select date](/images/od/ct/upload-step1-date.png)
   </Step>
   <Step title="Select the event type">
     In **Step 2**, select whether the event was a **Race** or a **Test**.
 
-    ![Select event type](/images/sops/charging-monitoring/upload-step2-event-type.png)
+    ![Select event type](/images/od/ct/upload-step2-event-type.png)
   </Step>
   <Step title="Select the region">
     In **Step 3**, select the region of the event.
 
-    ![Select region](/images/sops/charging-monitoring/upload-step3-region.png)
+    ![Select region](/images/od/ct/upload-step3-region.png)
   </Step>
   <Step title="Select the timezone">
     In **Step 4**, select the timezone of the event.
 
-    ![Select timezone](/images/sops/charging-monitoring/upload-step4-timezone.png)
+    ![Select timezone](/images/od/ct/upload-step4-timezone.png)
   </Step>
   <Step title="Set the export threshold">
     In **Step 5**, adjust the minimum export threshold if needed. The default is 5 minutes — this is the minimum run duration to be included in the export.
 
-    ![Export threshold](/images/sops/charging-monitoring/upload-step5-threshold.png)
+    ![Export threshold](/images/od/ct/upload-step5-threshold.png)
   </Step>
   <Step title="Press Export Charging Data">
     Click **Export Charging Data**.
 
-    ![Export button](/images/sops/charging-monitoring/upload-export-button.png)
+    ![Export button](/images/od/ct/upload-export-button.png)
   </Step>
   <Step title="Review and confirm">
     A confirmation dialog will display a summary of the export configuration and the export path. Check that the configuration matches your expectation. If correct, press **Confirm Export**. If not, press **Cancel** and fix the configuration.
+	
+	![Export button](/images/od/ct/upload-confirm.png)
   </Step>
   <Step title="Wait for completion">
     The export and S3 sync will now run. A successful export will display the run data for each kart.
 
-    ![Successful export](/images/sops/charging-monitoring/upload-success.png)
+    ![Successful export](/images/od/ct/upload-success.png)
 
     <Warning>
       Do not close this page or select a new date while exports are ongoing. Doing so will cancel the remaining exports and the sync to S3.
@@ -72,8 +76,4 @@ At the end of each day during an event, charging data must be exported from the 
 
 ## If Anything Fails
 
-Screenshot the terminal window showing the error and contact the Software Development team:
-
-- David Shortland — david.shortland@smedleygroup.com
-- Gerri Bascianelli — gerardo.bascianelli@smedleygroup.com
-- Matt Smith — matt.smith@smedleygroup.com
+Screenshot the terminal window showing the error and contact the Software Development team by [emailing them](mailto:advanced-technology-c0a6ecefe97b@intake.linear.app).

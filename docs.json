@@ -95,7 +95,8 @@
               "od/ct/setup",
               "od/ct/start",
               "od/ct/data-upload",
-              "od/ct/stop-and-backup"
+              "od/ct/stop-and-backup",
+			  "od/ct/monitor-ui"
             ]
           }
         ]

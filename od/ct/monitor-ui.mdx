@@ -1,0 +1,50 @@
+---
+title: "Battery Health Monitoring Dashboard"
+sidebarTitle: "Health Dashboard
+description: "How to use the telemetry UI to monitor charging batteries during an FKL event."
+---
+
+## Overview
+
+This SOP describes how to use the new telemetry UI to monitor the charging status of kart batteries throughout the duration of an event.
+
+**Why?** Provides a quick and easy-to-understand visualisation of battery charging status across all karts.
+
+**When?** Throughout the duration of the event.
+
+---
+
+## Prerequisites
+
+The application must be set up and running before you begin. If you are unsure how to do this, follow the [Setting Up the Application](/sops/charging-monitoring/setup) and [Starting the Application](/sops/charging-monitoring/start) SOPs first.
+
+---
+
+## Running the UI
+
+<Steps>
+  <Step title="Open the Monitor Charging page">
+    In a browser, navigate to `http://localhost:4200/monitor-charging`.
+  </Step>
+  <Step title="View the dashboard">
+    The dashboard will load. If no karts are turned on, the kart cards will be empty.
+
+    ![Empty dashboard — no karts on](/images/od/ct/monitor-empty.png)
+
+    When karts are turned on, each card will populate with battery data.
+
+    ![Dashboard with active kart cards](/images/od/ct/monitor-active.png)
+  </Step>
+</Steps>
+
+---
+
+## Filtering Karts
+
+Karts can be filtered by category using the **Show karts** dropdown list.
+
+![Show karts dropdown filter](/images/od/ct/monitor-filter.png)
+
+<Note>
+  It is recommended to run three separate browser tabs — one for each kart category — as this is faster to load during the event.
+</Note>
