@@ -44,7 +44,6 @@
       },
       {
         "tab": "Operations",
-        "icon": "flag-checkered",
         "groups": [
           {
             "group": "Roles & Responsibilities",
@@ -92,7 +91,6 @@
       },
       {
         "tab": "Software & Technology",
-        "icon": "monitor",
         "groups": [
           {
             "group": "Internal Tools",
@@ -120,7 +118,6 @@
       },
       {
         "tab": "Changelog",
-        "icon": "calendar",
         "groups": [
           {
             "group": "Changelog",
