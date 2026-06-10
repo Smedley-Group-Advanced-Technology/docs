@@ -119,6 +119,13 @@
 	  {
 		  "tab": "Operations",
 		  "groups": [
+				{
+				  "group": "General",
+				  "icon": "book-open",
+				  "pages": [
+					"operations/general/communication-remote-support"
+				  ]
+				},
 			{
 			  "group": "Roles & Responsibilities",
 			  "icon": "users",
@@ -183,18 +190,24 @@
         "tab": "Software & Technology",
         "groups": [
           {
-            "group": "Internal Tools",
-            "icon": "wrench",
-            "pages": [
-              "software/internal/index",
-			  {
-                "group": "Operator Dashboard",
-                "pages": [
-                  "operations/customer-experience/operational-dashboard"
-                ]
-              }
-            ]
-          },
+		  "group": "Internal Tools",
+		  "icon": "wrench",
+		  "pages": [
+			"software/internal/index",
+			{
+			  "group": "Operator Dashboard",
+			  "pages": [
+				"software/internal/od-general"
+			  ]
+			},
+			{
+			  "group": "KART",
+			  "pages": [
+				"software/internal/kart"
+			  ]
+			}
+		  ]
+		},
           {
             "group": "Third-Party Tools",
             "icon": "plug",
