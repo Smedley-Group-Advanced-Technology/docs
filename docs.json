@@ -29,7 +29,7 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "introduction/welcome"
+      "destination": "/introduction/welcome"
     }
   ],
   "navigation": {
@@ -165,7 +165,7 @@
 				{
 				  "group": "Kart Technician",
 				  "pages": [
-					"operations/kart-technician/index",
+					"operations/kart-tech/index",
 					{
 					  "group": "Level 1 Service",
 					  "pages": [
