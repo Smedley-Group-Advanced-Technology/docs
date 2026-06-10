@@ -191,7 +191,9 @@
 			{
 			  "group": "Operator Dashboard",
 			  "pages": [
-				"software/internal/od-general"
+				"software/internal/od-general",
+				"software/internal/od-delete-duplicate-drivers",
+				"software/internal/od-mark-drivers-unique"
 			  ]
 			},
 			{
