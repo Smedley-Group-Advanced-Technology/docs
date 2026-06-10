@@ -240,7 +240,11 @@
       }
     ]
   },
-  "logo": "/logo/dark.svg",
+  "logo": {
+	  "light": "/logo/light.svg",
+	  "dark": "/logo/dark.svg",
+	  "href": "https://www.fatkarting.com"
+	},
   "navbar": {
     "primary": {
       "type": "button",
