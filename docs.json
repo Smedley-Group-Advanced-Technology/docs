@@ -243,7 +243,7 @@
   "logo": {
 	  "light": "/logo/light.svg",
 	  "dark": "/logo/dark.svg",
-	  "href": "https://www.fatkarting.com"
+	  "href": "/introduction/welcome"
 	},
   "navbar": {
     "primary": {
@@ -254,7 +254,7 @@
   },
   "fonts": {
     "family": "Inter",
-    "weight": 300
+    "weight": 400
   },
   "styling": {
     "eyebrows": "breadcrumbs"
