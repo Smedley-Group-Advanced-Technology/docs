@@ -1,5 +1,6 @@
 ---
 title: "SOP: Deleting Duplicate Drivers"
+sidebarTitle: "Delete Duplicate Drivers"
 description: "How to identify and remove duplicate driver records on the Operator Dashboard, including merging tickets where necessary."
 ---
 
@@ -16,6 +17,10 @@ Duplicate driver records must be resolved to ensure data integrity across the pl
 ---
 
 ## Procedure
+
+<Warning>
+  This process is not reversible so ensure you are making the correct steps before confirming.
+</Warning>
 
 <Steps>
   <Step title="Navigate to the Drivers tab">
@@ -35,21 +40,31 @@ Duplicate driver records must be resolved to ensure data integrity across the pl
   </Step>
   <Step title="Click Delete Driver">
     On the duplicate record you wish to remove, click the red **Delete Driver** button.
+	
+	![Delete driver button](/images/software/internal/od-delete-driver.png)
   </Step>
   <Step title="Check for associated tickets">
     Two outcomes are possible:
 
     **No tickets** — the driver can be deleted immediately with no further action required.
+	
+	![No tickets found for selected driver](/images/software/internal/od-no-tickets.png)
 
     **Tickets present** — the tickets must be moved to another driver profile before the deletion can be completed. Continue with the steps below.
+	
+	![Tickets present for selected driver](/images/software/internal/od-tickets.png)
   </Step>
   <Step title="Search for the driver to merge into">
     Search for the name of the driver you wish to merge the tickets into. This should be the other duplicate — the one you are keeping.
+	
+	![Move tickets confirmation window](/images/software/internal/od-move-tickets.png)
   </Step>
   <Step title="Select the driver">
     Double-click on the driver profile to merge the tickets into.
   </Step>
   <Step title="Confirm the merge">
     The red **Confirm** button will now become active. Click it to complete the merge and delete the duplicate.
+	
+	![Move tickets confirmation button active](/images/software/internal/od-move-tickets-confirm.png)
   </Step>
 </Steps>
