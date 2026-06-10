@@ -26,6 +26,12 @@
     ],
     "display": "toc"
   },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "introduction/welcome"
+    }
+  ]
   "navigation": {
     "tabs": [
       {
@@ -167,10 +173,10 @@
 			  "pages": [
 				"operations/kart-technician/index",
 				{
-				  "group": "Post-Event Level 1",
+				  "group": "Level 1 Service",
 				  "pages": [
-					"operations/kart-technician/ek1-post-event-level1",
-					"operations/kart-technician/ek2-ek3-post-event-level1"
+					"operations/kart-tech/ek1-post-event-level1",
+					"operations/kart-tech/ek2-ek3-post-event-level1"
 				  ]
 				}
 			  ]
