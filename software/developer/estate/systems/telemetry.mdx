@@ -1,0 +1,47 @@
+---
+title: "Telemetry"
+sidebarTitle: "Telemetry"
+description: "Locally hosted microservices for collecting and analysing kart fleet telemetry data — charging data live, DAQ data in development."
+---
+
+<Badge color="yellow">Partial — Charging data live, DAQ in development</Badge>
+
+## Overview
+
+The Telemetry system exists to collect and enable analysis of kart fleet telemetry data. It gives SG the ability to monitor fleet battery health in real time and to ingest and analyse live run data (DAQ) from the karts during sessions. Combined with timing data from TalentID:Coaching, this provides a more complete picture of driver and kart performance.
+
+## How It Works
+
+Telemetry is a set of locally hosted microservices that communicate directly with the kart fleet over TCP to collect CAN charging data and DAQ (run) data. It consists of three components:
+
+- **Charging Data Receiver** — Collects CAN charging data from the fleet over TCP.
+- **Telemetry Dashboard** — A web application to monitor fleet battery health in real time and export charging data runs to S3.
+- **Exporter API** — Queries InfluxDB for charging data monitored in the Telemetry Dashboard, and ingests live run (DAQ) data from the karts and uploads to S3.
+
+These services communicate asynchronously via NATS and use InfluxDB as the charging data database. All components are hosted as Docker containers via Docker Compose.
+
+Telemetry reads timing data from TalentID:Coaching to correlate telemetry readings with lap timing, and reads booking event data from GKL API to understand which events are races and which are tests. Collected telemetry data is written back into TalentID:Coaching via its API, where it is stored alongside timing data with a reference to its respective MATLAB data in S3.
+
+<Note>Telemetry is locally hosted, not cloud-hosted. This is an important operational distinction — it requires physical presence on the network where the karts are.</Note>
+
+## Repositories
+
+| Repository | Description |
+|---|---|
+| [can-wifi](https://github.com/Smedley-Group-Advanced-Technology/can-wifi) | Telemetry services and infrastructure code |
+
+## Dependencies
+
+### Internal
+
+- **TalentID: Coaching** — Telemetry reads timing data from TalentID:Coaching to correlate with telemetry readings. It also writes collected telemetry data back into TalentID:Coaching via the API, where it is stored and served alongside timing KPIs.
+- **GKL API** — Telemetry reads booking event data from GKL API to understand active events. Read-only.
+
+### Infrastructure
+
+- **TalentIdPipeline-Infra-CDK** — Provides the VPC and shared MongoDB EC2 instance.
+- **Local network** — Telemetry services are locally hosted and communicate with the kart fleet over TCP on the local network.
+
+## Notes
+
+- DAQ data ingestion via the Exporter API is currently in development.

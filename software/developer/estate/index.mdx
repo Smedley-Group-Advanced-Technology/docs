@@ -1,0 +1,41 @@
+---
+title: "Software Estate"
+sidebarTitle: "Overview"
+description: "High-level overview of the SG Advanced Tech software estate — architecture, project inventory, and hosting."
+---
+
+The SG Advanced Tech software estate is documented here. This section covers each system's purpose, architecture, dependencies, and repositories.
+
+## Architecture
+
+![Software estate architecture diagram](/images/software/developer/software-estate.png)
+
+The estate is split into two logical groups:
+
+**Core estate** — The interconnected set of systems powering FKL events end-to-end, from driver booking through to timing data and telemetry.
+
+**Fleet Management Platform** — Currently in development. Shares infrastructure dependencies with the core estate (via TalentIdPipeline-Infra-CDK for VPC) but has no shared data dependencies at this time. Integration with GKL Platform is anticipated.
+
+## Hosting
+
+The estate is hosted across two AWS accounts:
+
+| Account ID | Usage |
+|---|---|
+| `338232497876` | Primary — hosts the majority of the estate |
+| `474229912940` | Secondary |
+
+Repositories were historically hosted in AWS CodeCommit across these two accounts. New code should be hosted in the **SG GitHub organisation**.
+
+## Project Inventory
+
+| System | Status | Description |
+|---|---|---|
+| [TalentID: Coaching](/software/developer/estate/talentid/talentid-coaching) | <Badge color="green">Live</Badge> | Ingests AlphaTiming results, computes KPIs, serves timing and telemetry data via API |
+| [TalentID: Global](/software/developer/estate/talentid/talentid-global) | <Badge color="yellow">In Development</Badge> | Global driver ranking platform — ingests parsed motorsport event timing PDFs, serves KPIs via API |
+| [GKL API](/software/developer/estate/gkl/gkl-api) | <Badge color="green">Live</Badge> | Central backend — ingests Vivenu webhooks, booking website data, and operator actions via OD |
+| [Operator Dashboard](/software/developer/estate/gkl/gkl-od) | <Badge color="green">Live</Badge> | Operator-facing tool for managing bookings, exporting to AlphaTiming, and viewing timing data |
+| [Booking Website](/software/developer/estate/gkl/gkl-booking-website) | <Badge color="green">Live</Badge> | Customer-facing site for parents to book tickets, manage driver profiles and accounts |
+| [Telemetry](/software/developer/estate/telemetry) | <Badge color="yellow">Partial</Badge> | Locally hosted microservices for kart fleet telemetry — charging data live, DAQ data in development |
+| [Fleet Management Platform](/software/developer/estate/fmp) | <Badge color="yellow">In Development</Badge> | Central system for managing kart availability, fleet composition, and physical/logical BOMs |
+| [Kart Programming](/software/developer/estate/kart-programming) | <Badge color="red">Archived</Badge> | Spreadsheet-driven CANOpen kart programming tool — out of use |

@@ -1,0 +1,43 @@
+---
+title: "SG-Infra"
+sidebarTitle: "SG-Infra"
+description: "Target infrastructure pattern for SG Advanced Tech cloud systems — TypeScript AWS CDK project providing dedicated infrastructure for systems that adopt it."
+---
+
+<Badge color="blue">Active</Badge>
+
+## Overview
+
+SG-Infra was created as a cleaner, more maintainable replacement for the infrastructure patterns established in TalentIdPipeline-Infra-CDK. It is the **target infrastructure pattern for all new and migrated cloud systems going forward**.
+
+## What It Provisions
+
+SG-Infra is a TypeScript AWS CDK project that defines dedicated infrastructure for systems that adopt it. It currently provisions:
+
+- A dedicated, larger and more powerful MongoDB EC2 instance — currently used exclusively by Fleet Management Platform
+
+SG-Infra depends on TalentIdPipeline-Infra-CDK for the VPC and does not define its own network layer. All systems using SG-Infra therefore retain an indirect dependency on TalentIdPipeline-Infra-CDK.
+
+## Repositories
+
+| Repository | Description |
+|---|---|
+| [SG-Infra](https://github.com/Smedley-Group-Advanced-Technology/SG-Infra) | AWS CDK infrastructure definition |
+
+## Systems That Depend On This
+
+| System | Dependency |
+|---|---|
+| Fleet Management Platform | Dedicated MongoDB EC2 instance |
+
+## Dependencies
+
+### Infrastructure
+
+- **TalentIdPipeline-Infra-CDK** — SG-Infra depends on this repo for the VPC. It does not define its own network infrastructure.
+
+## Notes
+
+- SG-Infra is the target infrastructure pattern for all future cloud systems. New systems should use this rather than adding to TalentIdPipeline-Infra-CDK.
+- Currently only used by Fleet Management Platform. The goal is to migrate all systems toward this pattern over time, though no migration timeline has been agreed.
+- A future improvement would be to define the VPC within SG-Infra itself, fully decoupling it from the legacy TalentIdPipeline-Infra-CDK repo.

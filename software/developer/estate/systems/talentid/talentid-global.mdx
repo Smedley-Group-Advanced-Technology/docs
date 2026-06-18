@@ -1,0 +1,48 @@
+---
+title: "TalentID: Global"
+sidebarTitle: "TalentID: Global"
+description: "Proprietary global motorsport driver ranking platform — ingests parsed event timing data, computes ranking KPIs, and serves them via API to a customer-facing application."
+---
+
+<Badge color="yellow">In Development</Badge>
+
+## Overview
+
+TalentID:Global exists to provide a proprietary global ranking of motorsport drivers across different series and regions. It gives SG a data product that can be used commercially and serves as a differentiator in the talent identification space.
+
+<Note>The system currently has a DEV environment only — no PROD. The customer-facing web app is currently private; public launch scope and timeline are TBC. A new frontend is being implemented by Matt to replace the current customer-facing web app.</Note>
+
+## How It Works
+
+TalentID:Global ingests JSONs derived from pre-parsed PDF timing data from global motorsport events. These JSONs are uploaded by administrators via an admin web application. The system stores raw event data and computed ranking KPIs in MongoDB and serves them via a REST API to the customer-facing web application.
+
+The system is independent of the FKL-specific TalentID:Coaching platform and does not share data with it, though both share the same underlying MongoDB infrastructure via TalentIdPipeline-Infra-CDK.
+
+## Repositories
+
+| Repository | Description |
+|---|---|
+| [TalentID-Global](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/TalentID-Global/browse?region=eu-west-2) | Core backend |
+| [TalentID-Global-Lambdas](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/TalentID-Global-Lambdas/browse?region=eu-west-2) | Lambda functions for calculating KPIs asynchronously |
+| [TalentID-Global-WebApplication-User](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/TalentID-Global-WebApplication-User/browse?region=eu-west-2) | Customer-facing web app (currently private) |
+| [TalentID-Global-WebApplication-Admin](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/TalentID-Global-WebApplication-Admin/browse?region=eu-west-2) | Admin app for JSON ingestion |
+| [TalentID-Global-Web-Cdk](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/TalentID-Global-Web-Cdk/browse?region=eu-west-2) | API/Lambda infrastructure |
+| [TalentID-Global-WebApplication-User-CDK](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/TalentID-Global-WebApplication-User-CDK/browse?region=eu-west-2) | Infrastructure for user app |
+| [TalentID-Global-WebApplication-Admin-CDK](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/TalentID-Global-WebApplication-Admin-CDK/browse?region=eu-west-2) | Infrastructure for admin app |
+| [TalentID-Global-PDFParsing](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/TalentID-Global-PDFParsing/browse?region=eu-west-2) | PDF parsing — maintained by Matt Smith |
+
+<Warning>The following two repositories are out of use and should not be deployed or modified: [TalentID-Ranking-Website](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/TalentID-Ranking-Website/browse?region=eu-west-2), [Global-TalentIdPipeline-WebApplication-CDK](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/Global-TalentIdPipeline-WebApplication-CDK/browse?region=eu-west-2).</Warning>
+
+## Dependencies
+
+### Internal
+
+None. TalentID:Global is self-contained and does not depend on or integrate with any other system in the estate at this time.
+
+### Infrastructure
+
+- **TalentIdPipeline-Infra-CDK** — Provides the VPC and shared MongoDB EC2 instance used by this system.
+
+## Notes
+
+- The PDF parsing repo ([TalentID-Global-PDFParsing](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/TalentID-Global-PDFParsing/browse?region=eu-west-2)) is maintained by Matt Smith. Coordinate with him before making any changes to that repo.

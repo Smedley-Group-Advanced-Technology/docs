@@ -1,0 +1,41 @@
+---
+title: "Fleet Management Platform"
+sidebarTitle: "Fleet Management Platform"
+description: "Central system for managing the availability, build and condition of SG's kart fleet — logical and physical BOMs, damages and component tracking."
+---
+
+<Badge color="yellow">In Development</Badge>
+
+## Overview
+
+The Fleet Management Platform exists to serve as a central system for managing the availability, build and condition of SG's kart fleet. Before FMP, fleet management was handled through fragmented manual processes and spreadsheets with no single source of truth for kart builds, BOMs or damage records.
+
+<Note>The operations team currently use a Lovable-developed alternative while FMP MVP is in development. FMP only has a DEV environment at this time — there is no PROD.</Note>
+
+## How It Works
+
+FMP is an API and web application to manage SG's fleet of karts, their logical and physical BOMs, damages and component tracking. The MVP is currently in development, focused on logical BOMs.
+
+FMP uses a dedicated MongoDB instance provisioned by SG-Infra, separate from the shared infrastructure used by the rest of the estate. It has no live dependencies on the core estate at this time.
+
+## Repositories
+
+| Repository | Description |
+|---|---|
+| [FMP.API](https://github.com/Smedley-Group-Advanced-Technology/FMP.API) | Core backend API |
+| [FMP.API.Infra](https://github.com/Smedley-Group-Advanced-Technology/FMP.API.Infra) | Infrastructure for API |
+| [FMP.Web](https://github.com/Smedley-Group-Advanced-Technology/FMP.Web) | Frontend web application |
+| [FMP.Web.Infra](https://github.com/Smedley-Group-Advanced-Technology/FMP.Web.Infra) | Infrastructure for frontend |
+
+## Dependencies
+
+### Infrastructure
+
+- **SG-Infra** — FMP uses a dedicated MongoDB EC2 instance defined in SG-Infra, separate from the shared MongoDB instance used by the rest of the estate. SG-Infra is the target infrastructure pattern going forward.
+- **TalentIdPipeline-Infra-CDK (indirect)** — SG-Infra depends on TalentIdPipeline-Infra-CDK for the VPC. FMP therefore has an indirect dependency on this repo.
+
+## Notes
+
+- FMP is the first system to use SG-Infra, which is the target infrastructure pattern for all future cloud systems.
+- No live dependencies on the core estate at this time.
+- DEV environment only — no PROD.

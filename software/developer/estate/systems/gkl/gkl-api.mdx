@@ -1,0 +1,46 @@
+---
+title: "GKL API"
+sidebarTitle: "GKL API"
+description: "Core backend of the GKL Platform — the central system serving all customer-facing and operator-facing applications across the company."
+---
+
+<Badge color="green">Live</Badge>
+
+## Overview
+
+GKL API is the authoritative source for event, ticket, driver and user data across the company. Without it, the Booking Website cannot function, operators cannot manage events, and FKL events cannot run operationally.
+
+## How It Works
+
+GKL API is a REST API that handles all business logic for the GKL Platform. It ingests event, ticket, checkout and transaction data from Vivenu via webhooks, exposes data and actions to the Booking Website and Operational Dashboard, and proxies all requests to Vivenu on behalf of both web applications (e.g. creating checkouts, fetching ticket availability).
+
+It also generates driver entrant exports used in the AlphaTiming timing workflow, exposes booking event data to the Telemetry system, and serves a data dump via presigned S3 URL for the finance team's BigQuery pipeline.
+
+<Note>All communication between the web apps (Booking Website, OD) and Vivenu is proxied through GKL API. There is no direct integration between the frontend applications and Vivenu.</Note>
+
+## Repositories
+
+| Repository | Description |
+|---|---|
+| [GklPlatform-API](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/GklPlatform-API/browse?region=eu-west-2) | Core backend API |
+
+## Dependencies
+
+### External
+
+- **Vivenu** — GKL API communicates with Vivenu bidirectionally. It receives event and ticket data via Vivenu webhooks, and proxies requests to Vivenu on behalf of the web apps. Neither the Booking Website nor the OD communicate with Vivenu directly.
+- **AlphaTiming (indirect)** — GKL API generates driver ID exports that are downloaded from the OD and manually uploaded to AlphaTiming by operators before each event.
+
+### Internal
+
+- **TalentID: Coaching** — The OD reads timing results from TalentID:Coaching to display them to operators. Read-only dependency.
+- **Telemetry** — Telemetry reads booking event data from GKL API. Read-only.
+- **BigQuery** — GKL API serves a dump of data via presigned S3 URL for the finance team's BigQuery pipeline.
+
+### Infrastructure
+
+- **TalentIdPipeline-Infra-CDK** — Provides the VPC and shared MongoDB EC2 instance used by this system.
+
+## Notes
+
+- The driver entrant export to AlphaTiming is a manual operational process performed before every event.

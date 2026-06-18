@@ -1,0 +1,33 @@
+---
+title: "Booking Website"
+sidebarTitle: "Booking Website"
+description: "Customer-facing web application for parents and drivers to purchase tickets, manage driver profiles and accounts."
+---
+
+<Badge color="green">Live</Badge>
+
+## Overview
+
+The GKL Booking Website is the primary touchpoint between SG's customers and the GKL Platform. It is a direct revenue-generating system — without it, customers have no self-service way to book tickets and have them automatically linked to their driver(s) in the platform.
+
+Users are referred to the Booking Website via the sales and marketing team's [fat-kartingleague.com](https://fat-kartingleague.com) website.
+
+## How It Works
+
+The Booking Website is a public-facing web application that allows parents to book tickets for their drivers, manage driver profiles and manage their accounts. All API calls go exclusively through GKL API — the only direct interactions with Vivenu are to redirect to Vivenu for payment or to view a ticket. GKL API proxies all requests to Vivenu on the website's behalf for checkout creation and ticket availability.
+
+## Repositories
+
+| Repository | Description |
+|---|---|
+| [GklPlatform-WebApp](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/GklPlatform-WebApp/browse?region=eu-west-2) | Booking Website frontend |
+
+## Dependencies
+
+### Internal
+
+- **GKL API** — The Booking Website communicates with GKL API for all operations including authentication, driver profiles, account management and checkout creation. GKL API proxies all Vivenu API calls on its behalf.
+
+### External
+
+- **Vivenu** — Checkout operations are proxied through GKL API to Vivenu. The Booking Website redirects to Vivenu once a checkout has been created in order to take payment, and redirects to Vivenu to show a user's ticket barcode.

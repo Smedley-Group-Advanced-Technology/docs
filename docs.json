@@ -240,12 +240,47 @@
             ]
           },
           {
-            "group": "Developer Reference",
-            "icon": "code",
-            "pages": [
-              "software/developer/index"
-            ]
-          }
+			  "group": "Developer Docs",
+			  "pages": [
+				"software/developer/index",
+				{
+				  "group": "Software Estate",
+				  "pages": [
+					"software/developer/estate/index",
+					{
+					  "group": "Systems",
+					  "pages": [
+						{
+						  "group": "TalentID",
+						  "pages": [
+							"software/developer/estate/systems/talentid/talentid-coaching",
+							"software/developer/estate/systems/talentid/talentid-global"
+						  ]
+						},
+						{
+						  "group": "GKL Platform",
+						  "pages": [
+							"software/developer/estate/systems/gkl/gkl-api",
+							"software/developer/estate/systems/gkl/gkl-od",
+							"software/developer/estate/systems/gkl/gkl-booking-website"
+						  ]
+						},
+						"software/developer/estate/systems/telemetry",
+						"software/developer/estate/systems/fmp",
+						"software/developer/estate/systems/kart-programming"
+					  ]
+					},
+					{
+					  "group": "Infrastructure",
+					  "pages": [
+						"software/developer/estate/infrastructure/talentidpipeline-infra-cdk",
+						"software/developer/estate/infrastructure/sg-infra"
+					  ]
+					}
+				  ]
+				}
+			  ]
+			}
         ]
       },
       {

@@ -1,0 +1,50 @@
+---
+title: "TalentIdPipeline-Infra-CDK"
+sidebarTitle: "TalentIdPipeline-Infra-CDK"
+description: "Foundational infrastructure layer for the SG Advanced Tech estate — defines the VPC and shared MongoDB instance used by all cloud-hosted systems."
+---
+
+<Badge color="blue">Active</Badge>
+
+## Overview
+
+TalentIdPipeline-Infra-CDK is the foundational infrastructure layer for the entire SG Advanced Tech software estate. It defines the VPC that all cloud-hosted systems operate within, and the primary MongoDB EC2 instance used by the core estate. Without this infrastructure, no cloud-hosted system in the estate can run.
+
+<Warning>Changes to this repo have the potential to affect all cloud-hosted systems simultaneously. Coordinate with the full team before making any modifications.</Warning>
+
+## What It Provisions
+
+TalentIdPipeline-Infra-CDK is an AWS CDK project (written in Python) that provisions:
+
+- A VPC used by all cloud-hosted systems in the estate, including SG-Infra
+- A shared MongoDB EC2 instance used by TalentID:Coaching, TalentID:Global, GKL Platform and Telemetry
+- Other complementary AWS infrastructure
+
+<Note>This repo is defined in Python CDK rather than the preferred TypeScript stack. It was originally created for the TalentID platform by Nick from AWS and has since been adapted into the shared infrastructure layer for all systems.</Note>
+
+## Repositories
+
+| Repository | Description |
+|---|---|
+| [TalentIdPipeline-Infra-CDK](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/TalentIdPipeline-Infra-CDK/browse?region=eu-west-2) | AWS CDK infrastructure definition |
+
+## Systems That Depend On This
+
+Every cloud-hosted system in the estate depends on this repo for the VPC:
+
+| System | Dependency |
+|---|---|
+| TalentID: Coaching | VPC + shared MongoDB |
+| TalentID: Global | VPC + shared MongoDB |
+| GKL Platform (GKL API, OD, Booking Website) | VPC + shared MongoDB |
+| Telemetry | VPC + shared MongoDB |
+| SG-Infra | VPC only (SG-Infra has its own MongoDB instance) |
+| Fleet Management Platform | VPC (indirect, via SG-Infra) |
+
+Kart Programming is the only system with no dependency on this repo.
+
+## Notes
+
+- This is a legacy infrastructure pattern. [SG-Infra](/software/developer/estate/infrastructure/sg-infra) is the target pattern for new and migrated systems going forward.
+- Despite being legacy, this repo is not going away in the short term — it remains a hard dependency for the VPC across all systems, including SG-Infra itself.
+- The shared MongoDB instance has no data isolation between TalentID:Coaching, TalentID:Global, GKL Platform and Telemetry at the infrastructure level.
