@@ -241,6 +241,7 @@
           },
           {
 			  "group": "Developer Docs",
+			  "icon": "book-open",
 			  "pages": [
 				"software/developer/index",
 				{
