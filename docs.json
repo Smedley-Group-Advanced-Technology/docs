@@ -217,30 +217,45 @@
 		  ]
 		},
           {
-            "group": "Third-Party Tools",
-            "icon": "plug",
-            "pages": [
-              "software/third-party/index",
-              {
-                "group": "Vivenu",
-                "pages": [
-                  "software/third-party/vivenu-updating-numbers",
-                  "software/third-party/vivenu-setting-up-a-new-hub",
-				  "software/third-party/vivenu-developer-tools",
-				  "software/third-party/vivenu-creating-new-event",
-				  "software/third-party/vivenu-configure-new-seller",
-				  "software/third-party/vivenu-naming-convention",
-				  "software/third-party/vivenu-setting-up-a-payment-gateway"
-                ]
-              },
-			  {
-                "group": "Alpha Timing",
-                "pages": [
-                  "software/third-party/alpha-timing"
-                ]
-              }
-            ]
-          },
+			  "group": "Third-Party Tools",
+			  "icon": "plug",
+			  "pages": [
+				"software/third-party/index",
+				{
+				  "group": "Vivenu",
+				  "pages": [
+					{
+					  "group": "General",
+					  "pages": [
+						"software/third-party/vivenu/general/vivenu-naming-convention",
+						"software/third-party/vivenu/general/vivenu-developer-tools"
+					  ]
+					},
+					{
+					  "group": "Hub Deployment",
+					  "pages": [
+						"software/third-party/vivenu/hub-deployment/vivenu-setting-up-a-new-hub",
+						"software/third-party/vivenu/hub-deployment/vivenu-configure-new-seller",
+						"software/third-party/vivenu/hub-deployment/vivenu-setting-up-a-payment-gateway",
+						"software/third-party/vivenu/hub-deployment/vivenu-creating-new-event"
+					  ]
+					},
+					{
+					  "group": "Hub Operations",
+					  "pages": [
+						"software/third-party/vivenu/hub-operations/vivenu-updating-numbers"
+					  ]
+					}
+				  ]
+				},
+				{
+				  "group": "Alpha Timing",
+				  "pages": [
+					"software/third-party/alpha-timing"
+				  ]
+				}
+			  ]
+			},
           {
 			  "group": "Developer Docs",
 			  "icon": "book-open",
