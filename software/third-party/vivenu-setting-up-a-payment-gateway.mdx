@@ -46,7 +46,7 @@ description: "How to create and configure a Stripe payment gateway for a hub on 
   <Step title="Initiate the Stripe connection">
     Click **Connect with Stripe** to be taken to the Stripe configuration page.
 
-    ![The Connect with Stripe button on the payment gateway page](/images/software/vivenu/connect-stripe.png)
+    ![The Connect with Stripe button on the payment gateway page](/images/software/vivenu/vivenu-connect-with-stripe.png)
   </Step>
   <Step title="Select the correct Stripe account">
     Select the Stripe account relevant to the hub you are setting up and connect.
@@ -54,6 +54,8 @@ description: "How to create and configure a Stripe payment gateway for a hub on 
     <Warning>
       If you are unsure which Stripe account is correct for this hub, contact the finance team before proceeding.
     </Warning>
+	
+	![The list of available sellers in Stripe](/images/software/vivenu/connect-stripe.png)
   </Step>
   <Step title="Authenticate and return to Vivenu">
     You will be redirected to Vivenu for authentication. Once confirmed, you will be returned to **Settings > Information**.
@@ -78,12 +80,12 @@ description: "How to create and configure a Stripe payment gateway for a hub on 
     Navigate to [https://dashboard.stripe.com/webhooks](https://dashboard.stripe.com/webhooks).
   </Step>
   <Step title="Copy the webhook URL from Vivenu">
-    Copy the webhook URL from Vivenu.
-
     ![Copying the webhook URL from Vivenu](/images/software/vivenu/vivenu-copy-url.png)
   </Step>
   <Step title="Select events">
     Under **Configure your event destination > Events**, select **Select all** and continue.
+	
+	![Select all event triggers on Stripe](/images/software/vivenu/stripe-webhook-select-all.png)
   </Step>
   <Step title="Select destination type">
     Select **Webhook endpoint** and continue.
