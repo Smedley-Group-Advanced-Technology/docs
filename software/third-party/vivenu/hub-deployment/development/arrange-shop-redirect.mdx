@@ -1,0 +1,73 @@
+---
+title: "Arranging the Shop URL Redirect"
+sidebarTitle: "Shop Redirect"
+description: "How to request that Vivenu configure a redirect from the seller shop domain to our website."
+---
+
+## Overview
+
+We cannot configure this redirect ourselves, so it must be requested from our Vivenu contacts by email. The redirect sends anyone who lands on the Vivenu seller shop root to our website instead.
+
+This adds another layer of defence against users checking out directly on the Vivenu shop and bypassing our half-headless approach. If a user somehow reaches the Vivenu shop root, the redirect routes them back to us.
+
+<Note>
+  This is **not a blocker for deployment**. A hub can go live before the redirect is in place, but the request should still be sent as part of setup.
+</Note>
+
+---
+
+## Prerequisites
+
+- The seller shop domain already configured and verified. See [Configuring the Seller Domain (DNS)](/software/third-party/vivenu/hub-deployment/development/configure-seller-domain).
+- The hub code and region confirmed (e.g. `de` / `DE` for Germany).
+
+---
+
+## Who to Contact
+
+| Field | Recipient |
+|--|--|
+| To | Michael Bongarts (Solution Architect), [michael.bongarts@vivenu.com](mailto:michael.bongarts@vivenu.com) |
+| Cc | Mitja Mueller (Account Manager), [mitja.mueller@vivenu.com](mailto:mitja.mueller@vivenu.com) |
+| Cc | The rest of the development team |
+
+---
+
+## Sending the Request
+
+<Steps>
+  <Step title="Identify the source and target URLs">
+    The **source** is the seller shop domain you configured. The **target** is our website events page for the region.
+
+    For Germany, this is:
+
+    ```
+    https://shop.de.fat-kartingleague.com  ->  https://events.fat-kartingleague.com/DE/events
+    ```
+
+    The source uses the lowercase hub code (`shop.<hub-code>.fat-kartingleague.com`) and the target uses the uppercase region code (`/<REGION_CODE>/events`).
+  </Step>
+  <Step title="Compose the email">
+    Send the email to the recipients above, asking them to configure the redirect. For example:
+
+    ```
+    Subject: Shop redirect configuration request: FAT Karting League (DE)
+
+    Hi Michael,
+
+    Please could you configure a redirect for our new FAT Karting League
+    seller shop domain to our website?
+
+    From: https://shop.de.fat-kartingleague.com
+    To:   https://events.fat-kartingleague.com/DE/events
+
+    Please let me know when this has been configured.
+
+    Thanks,
+    <Your name>
+    ```
+  </Step>
+  <Step title="Send">
+    Send the email and track it as part of the hub setup. No further action is needed in Vivenu from our side.
+  </Step>
+</Steps>

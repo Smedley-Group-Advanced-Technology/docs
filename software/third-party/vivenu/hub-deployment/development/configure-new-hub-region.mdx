@@ -1,0 +1,157 @@
+---
+title: "Configuring the New Hub Region in GKL API"
+sidebarTitle: "Hub Region"
+description: "How to add a new hub region to the GKL Platform by writing and running a MongoDB migration against GklPlatform_PROD."
+---
+
+## Overview
+
+A new hub region is added to the GKL Platform through a MongoDB migration. You write a new migration script in the API repository based on a previous one, commit it, then run it against the production database via Studio 3T on the EC2 desktop. Finally you adjust the new region's web environment configuration and the go-live flags.
+
+The migration does two things:
+
+1. Pushes a new entry into the `REGION_CONFIGURATION` document with the new hub's settings.
+2. Copies an existing hub's other configuration documents (such as its `WEB_ENVIRONMENT_CONFIGURATION`) and re-inserts them with the new hub code in the `_id`.
+
+Because step 2 copies an existing hub verbatim, you then edit the new region's `WEB_ENVIRONMENT_CONFIGURATION` document to set the correct values for the new hub.
+
+<Warning>
+  **You are working directly on the PROD database.** `GklPlatform_PROD` holds live data that powers sales and other applications for the hubs currently running. A mistake here can disrupt active hubs. Work carefully, only touch the documents this SOP describes, and double check every value before running anything.
+</Warning>
+
+---
+
+## Prerequisites
+
+Gather the following values before starting. They populate the new region entry and the web environment configuration:
+
+| Value | Details |
+|--|--|
+| Hub code (region code, uppercase) | For example `DE`. See the [naming convention](/software/third-party/vivenu/general/vivenu-naming-convention). |
+| Currency | For example `EUR`. Confirm with the Finance Team. |
+| Display name | For example `Germany`. |
+| Vivenu base URL | Always `https://vivenu.com`. This SOP only ever references PROD. |
+| Vivenu API key | The GKL Platform key from the [API Key SOP](/software/third-party/vivenu/hub-deployment/development/configure-api-key). |
+| HMAC secret | Generate it now, for example via [jwtsecretkeygenerator.com](https://jwtsecretkeygenerator.com). It must be generated here because it is created before the webhooks. The base64 encoded value is later pasted into the [webhooks](/software/third-party/vivenu/hub-deployment/development/configure-webhooks). |
+| Teams webhook URL | The incoming webhook URL from the [Teams Notification SOP](/software/third-party/vivenu/hub-deployment/development/configure-teams-notification). |
+| Operator dashboard URL | Always `https://admin.uk.fat-kartingleague.com`. The `uk` is from legacy infrastructure. |
+| Base website URL | For example `https://events.fat-kartingleague.com/DE`. |
+| Redirect URLs | Event listing, privacy, terms, ready-to-race, landing page. |
+
+---
+
+## Creating the Migration Script
+
+<Steps>
+  <Step title="Open the Migrations folder">
+    In the API repository, go to `GklPlatform.API/DbScripts/Migrations`. The migrations are numbered `.js` MongoDB scripts.
+  </Step>
+  <Step title="Copy the most recent add-hub migration">
+    Copy the latest add-hub migration (for example `033_add_germany_hub.js`) to a new file, incrementing the number prefix and naming it for the new hub, for example `034_add_<hub>_hub.js`.
+  </Step>
+  <Step title="Change the parameters for the new hub">
+    Update the values in the `REGION_CONFIGURATION` push to match the new hub. Only the parameters change, the logic stays the same:
+
+    ```js
+    db.getCollection("Configurations").updateOne({ _id: "REGION_CONFIGURATION" }, {
+        $push: {
+            Configuration: {
+                "id": "DE",
+                "currency": "EUR",
+                "display": "Germany",
+                "isActive": false,
+                "vivenuSecret": {
+                    "BaseUrl": "https://vivenu.com",
+                    "ApiKey": "<vivenu-api-key>"
+                },
+                "teamsWebhookUrl": "<teams-webhook-url>",
+                "operatorDashboardUrl": "https://admin.uk.fat-kartingleague.com",
+                "hmacSecret": "<hmac-secret>",
+                "baseWebsiteUrl": "https://events.fat-kartingleague.com/DE",
+                "showOnWebsite": false
+            }
+        }
+    })
+    ```
+
+    Leave `isActive` and `showOnWebsite` as `false` for now. They are switched on later (see [Go-live flags](#go-live-flags)).
+  </Step>
+  <Step title="Check the copy block">
+    The second block of the script finds an existing hub's documents and re-inserts them with the new hub code. Make sure it copies from a suitable source hub and writes to the new code, for example:
+
+    ```js
+    var sourceConfigs = db.getCollection("Configurations").find({ _id: /UK/ }).toArray();
+    for (var c of sourceConfigs) {
+        c._id = c._id.replace("UK", "DE");
+        db.getCollection("Configurations").insertOne(c);
+    }
+    ```
+  </Step>
+  <Step title="Commit and push">
+    Save the new migration, then commit and push it to the repository.
+
+    <Warning>
+      Never commit real secrets to the repository. This is why the committed migration scripts keep placeholders (for example `<vivenu-api-key>` and `<hmac-secret>`) and point at DEV values. The real PROD secrets and URLs are only substituted in when you paste the migration into Studio 3T, never in the committed file.
+    </Warning>
+  </Step>
+</Steps>
+
+---
+
+## Running the Migration on PROD
+
+<Warning>
+  Previous migrations may point to DEV. For example, `033_add_germany_hub.js` uses `https://vivenu.dev`, a `events-dev-v2` base website URL, and a `.dev` operator dashboard URL. Before running against PROD, change every DEV value to its PROD equivalent (for example `https://vivenu.com` and the production website and dashboard URLs).
+</Warning>
+
+<Steps>
+  <Step title="Copy the migration script">
+    Copy the full contents of your new migration script.
+  </Step>
+  <Step title="Connect to the EC2 desktop and open Studio 3T">
+    Connect to the EC2 desktop, open Studio 3T, and connect to the Mongo instance.
+  </Step>
+  <Step title="Open the Configurations collection">
+    Open the `GklPlatform_PROD` database, then open the `Configurations` collection.
+  </Step>
+  <Step title="Paste and run the migration">
+    Paste the migration into the shell for the `Configurations` collection and run it. Confirm any DEV values have been changed to PROD before running.
+  </Step>
+</Steps>
+
+---
+
+## Editing the New Region Web Environment Configuration
+
+Because the copy block duplicated an existing hub's documents, the new region's web environment configuration still holds the source hub's values. Update it for the new hub.
+
+<Steps>
+  <Step title="Find the web environment documents">
+    In the `Configurations` collection, run a find on `_id: /WEB_ENV/`.
+  </Step>
+  <Step title="Open the new hub's document">
+    Identify the new document whose `_id` prefix is your new hub code, for example `WEB_ENVIRONMENT_CONFIGURATION_DE`.
+  </Step>
+  <Step title="Set the currency and other parameters">
+    Edit that document to set the currency and the other hub-specific parameters, such as the redirect URLs (`eventListingRedirect`, `privacyRedirect`, `termsRedirect`, `r2rExplanationRedirect`, `landingPageRedirect`). Compare against an existing live hub's `WEB_ENVIRONMENT_CONFIGURATION` document to see which values are region-specific.
+  </Step>
+</Steps>
+
+---
+
+## Go-live Flags
+
+Two flags on the new region entry control when the hub becomes active. Both start as `false`.
+
+<Steps>
+  <Step title="Set isActive to true">
+    Set `"isActive": true` when you are ready to start ingesting via the Vivenu webhook and want to see the hub on the operational dashboard.
+  </Step>
+  <Step title="Set showOnWebsite to true">
+    Set `"showOnWebsite": true` when making a test payment before release, or when the deployment team is ready to release the website to the public.
+
+    <Warning>
+      While `showOnWebsite` is `false`, users cannot visit the region's link or events on our website.
+    </Warning>
+  </Step>
+</Steps>

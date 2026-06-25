@@ -1,0 +1,63 @@
+---
+title: "Configuring the TalentID / API Integration"
+sidebarTitle: "TalentID"
+description: "How to add support for a new hub to the TalentID API by adding a region mapping for Alpha Timing S3 ingestion."
+---
+
+## Overview
+
+TalentID ingests Alpha Timing event files into an S3 bucket, with one subdirectory (prefix) per hub. The timing laptop uploads each hub's files under that hub's prefix.
+
+Following a refactor, supporting a new hub now only requires adding a single entry to the `_supportedRegions` dictionary in the `AdminController`. No other code change is needed.
+
+---
+
+## Prerequisites
+
+- Access to the TalentID API repository.
+- The new hub code (region code, uppercase, for example `DE`). See the [naming convention](/software/third-party/vivenu/general/vivenu-naming-convention).
+
+---
+
+## Adding the Region Mapping
+
+<Steps>
+  <Step title="Open AdminController">
+    In the TalentID API repository, open `TalentId.API.Core/Controllers/AdminController.cs`.
+  </Step>
+  <Step title="Add the new hub to the dictionary">
+    Add an entry to the `_supportedRegions` dictionary, mapping the hub code to its S3 subdirectory in the form `AlphaTiming-<CODE>`:
+
+    ```csharp
+    private static readonly Dictionary<string, string> _supportedRegions =
+        new(StringComparer.OrdinalIgnoreCase)
+        {
+            ["UK"] = "AlphaTiming",
+            ["US-CA"] = "AlphaTiming-US-CA",
+            ["US-MW"] = "AlphaTiming-US-MW",
+            ["US-TX"] = "AlphaTiming-US-TX",
+            ["DE"] = "AlphaTiming-DE",
+            ["<CODE>"] = "AlphaTiming-<CODE>"
+        };
+    ```
+
+    The key is the hub code used in the import route, and the value is the S3 prefix files are uploaded under (`fileKey = "{subdir}/{fileName}"`).
+
+    <Note>
+      `UK` is the only exception, mapping to `AlphaTiming` with no suffix. Every other hub follows the `AlphaTiming-<CODE>` convention. Region matching is case insensitive, but the prefix value is used as written, so keep the casing correct.
+    </Note>
+  </Step>
+  <Step title="Push to prod and confirm deployment">
+    Commit and push the change to the `prod` branch. The CI/CD pipeline in AWS CodePipeline deploys the new code automatically. Check the pipeline has completed successfully before considering the change live.
+  </Step>
+</Steps>
+
+---
+
+## S3 Folder
+
+You do not need to create the hub's folder in the S3 bucket manually. The timing laptop creates it automatically when it pushes its first file under the hub key prefix.
+
+<Note>
+  There is no problem if you do create the folder yourself, just make sure it is correct and matches the `AlphaTiming-<CODE>` prefix exactly.
+</Note>

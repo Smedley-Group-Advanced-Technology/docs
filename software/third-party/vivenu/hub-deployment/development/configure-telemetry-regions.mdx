@@ -1,0 +1,93 @@
+---
+title: "Configuring the Telemetry Regions"
+sidebarTitle: "Telemetry"
+description: "How to add a new hub region to the telemetry distribution and confirm its timezone is available in the telemetry UI."
+---
+
+## Overview
+
+Adding a new hub region to telemetry means registering the hub code across the distribution configuration and the build menu, then confirming the region's timezone is available in the telemetry UI (also known as the web-app). Pushing to PROD deploys the changes.
+
+---
+
+## Prerequisites
+
+- Access to the telemetry repository.
+- The new hub code (region code, uppercase, for example `DE`). See the [naming convention](/software/third-party/vivenu/general/vivenu-naming-convention).
+- The timezone(s) for the new region (for example `Europe/Berlin` for Germany).
+
+---
+
+## Adding the Region
+
+Add the new hub code in each of the following files.
+
+<Steps>
+  <Step title="Add to the PROD distribution env">
+    In `distribution/.env`, append the new hub code to `HUBREGIONS`:
+
+    ```
+    HUBREGIONS=UK,US-MW,US-CA,US-TX,DE
+    ```
+  </Step>
+  <Step title="Add to the DEV distribution env">
+    In `distribution/.env.dev`, append the new hub code to `HUBREGIONS` in the same way.
+  </Step>
+  <Step title="Add to the build menu">
+    In `distribution/build_application.bat`, add a menu option for the new region, extend the prompt range, and add the matching branch that sets `HUBREGION`:
+
+    ```bat
+    echo   5 - DE
+    set /p choice="Enter the number (1-5): "
+
+    ) else if "%choice%"=="5" (
+        set HUBREGION=DE
+        echo Using HUB Region: DE
+    )
+    ```
+  </Step>
+  <Step title="Add to the API launch config">
+    In `telemetry/telemetry-api/.vscode/launch.json`, append the new hub code to `HUB_REGIONS`:
+
+    ```
+    "HUB_REGIONS": "UK,US-MW,US-CA,US-TX,DE",
+    ```
+  </Step>
+</Steps>
+
+---
+
+## Checking the Timezone
+
+Confirm the new region's timezone is available in the telemetry UI (web-app).
+
+<Steps>
+  <Step title="Open the timezone list">
+    Open `telemetry/telemetry-web-app/src/app/services/date-time.service.ts` and check the `commonTimeZones` array.
+  </Step>
+  <Step title="Add the timezone if missing">
+    Make sure the timezone(s) for the new region are present. If a required timezone is missing, add it to the array. For example, Germany uses `Europe/Berlin`:
+
+    ```ts
+    commonTimeZones = [
+      "UTC",
+      "America/New_York",
+      // ...
+      "Europe/London",
+      "Europe/Paris",
+      "Europe/Berlin",
+      // ...
+    ];
+    ```
+  </Step>
+</Steps>
+
+---
+
+## Deploying
+
+<Steps>
+  <Step title="Push to PROD and confirm deployment">
+    Push the changes to PROD. This deploys the changed scripts to the S3 bucket, from which they are synced, and the changed Docker images, which are pulled when run. Confirm the deployment has completed successfully.
+  </Step>
+</Steps>

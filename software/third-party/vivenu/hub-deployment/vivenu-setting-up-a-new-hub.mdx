@@ -6,23 +6,63 @@ description: "The processes that must be completed by the Development and Operat
 
 ## Overview
 
-When a new hub needs to be launched, there are various processes that must be completed across the platforms used by FKL. Some of these are for the **Development Team** and some are for the **Operations Team**.
+When a new hub needs to be launched, there are various processes that must be completed across the platforms used by FKL. Some of these are for the **Development Team** and some are for the **Deployment Team**.
+
+<Warning>
+  The risk in this setup is high. We are selling tickets, so if the hub goes live and the website is released with something misconfigured, the company misses out on revenue. Take the time to get it right and to test thoroughly.
+</Warning>
+
+<Note>
+  Processes linking to a SOP marked **(draft)** have a page in place, but the content is still to be written.
+</Note>
+
+---
+
+## Prerequisites
+
+Before any Development Team or Deployment Team processes can begin, a new seller must be requested from Vivenu. This is not a Development Team responsibility, but it is a prerequisite for both teams.
+
+<Note>
+  The Request New Seller SOP is still to be completed by Matt.
+</Note>
+
+| Process | SOP | Duration |
+|--|--|--|
+| Request new seller with Vivenu | [Request New Seller SOP (draft)](/software/third-party/vivenu/hub-deployment/request-new-seller) | 2 weeks |
 
 ---
 
 ## Development Team
 
-| Process | SOP | Duration |
-|--|--|--|
-| Request new seller with Vivenu | Coming soon | 2 weeks |
-| Configure seller domain (DNS) | Coming soon | TBC |
-| Configure email domain (DNS) | Coming soon | TBC |
-| Configure Webhooks + API key | Coming soon | TBC |
-| Configure new hub region | Coming soon | TBC |
-| Arrange Vivenu configuration of redirection from shop URL to our website | Coming soon | TBC |
-| Configure TalentID/API integration | Coming soon | TBC |
-| Configure Telemetry regions | Coming soon | TBC |
-| Integrate Google Analytics TAG ID with new hub region website | Coming soon | TBC |
+<Note>
+  All Development Team SOPs below apply to the **production** environment only. The DEV environment is configured separately in the isolated DEV sellers.
+</Note>
+
+| # | Process | SOP | Duration |
+|--|--|--|--|
+| 1 | Configure seller domain (DNS) | [Seller Domain SOP](/software/third-party/vivenu/hub-deployment/development/configure-seller-domain) | 30 min (+ DNS propagation) |
+| 2 | Configure email domain (DNS) | [Email Domain SOP](/software/third-party/vivenu/hub-deployment/development/configure-email-domain) | 30 min (+ DNS propagation) |
+| 3 | Arrange Vivenu configuration of redirection from shop URL to our website | [Shop URL Redirect SOP](/software/third-party/vivenu/hub-deployment/development/arrange-shop-redirect) | 15 min |
+| 4 | Configure Microsoft Teams notification team | [Teams Notification SOP](/software/third-party/vivenu/hub-deployment/development/configure-teams-notification) | 30 min |
+| 5 | Configure API key | [API Key SOP](/software/third-party/vivenu/hub-deployment/development/configure-api-key) | 15 min |
+| 6 | Configure new hub region in GKL API | [New Hub Region SOP](/software/third-party/vivenu/hub-deployment/development/configure-new-hub-region) | 2 hours |
+| 7 | Configure webhooks | [Webhooks SOP](/software/third-party/vivenu/hub-deployment/development/configure-webhooks) | 1 hour |
+| 8 | Configure TalentID/API integration | [TalentID Integration SOP](/software/third-party/vivenu/hub-deployment/development/configure-talentid-integration) | 30 min |
+| 9 | Configure Telemetry regions | [Telemetry Regions SOP](/software/third-party/vivenu/hub-deployment/development/configure-telemetry-regions) | 45 min |
+
+<Note>
+  The Development Team is allotted 16 hours in total to complete the tasks in this section, replicate them in DEV, and test. This budget covers only the Development Team tasks above. It does not include the new seller request prerequisite or any of the Deployment Team tasks below. The configuration tasks above account for roughly 6 hours of that (excluding DNS propagation), leaving the majority of the window for DEV replication, verification, and testing.
+
+  The SOPs above are the definite processes that must be completed, but the budget also allows buffer for the discussions that often arise: clarifying specific configuration values with the Deployment Team or Sales Team, or waiting for something to be configured. Above all, protect enough time for testing, which is the most vital part of the window.
+
+  The majority of the time in a hub deployment is spent verifying the setup and testing the new hub. It is not possible to give a full list of tests, as these are done naturally with experience of the platform. The whole setup (except DNS) should be replicated in the DEV environments first, then in PROD.
+
+  Once everything is configured, the main PROD test on the Vivenu / GKL side is to set up a test event in Vivenu, buy a free ticket, then buy a paid £1 ticket, and invalidate both (the paid one via a refund). The payment gateway must be set up for this test. This is not the only test on the Vivenu / GKL side, and there are also separate tests to carry out on the TalentID and telemetry sides.
+</Note>
+
+<Warning>
+  Do no more paid tests than this in PROD.
+</Warning>
 
 ---
 

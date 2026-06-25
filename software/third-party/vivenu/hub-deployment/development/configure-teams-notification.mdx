@@ -1,0 +1,94 @@
+---
+title: "Configuring the Microsoft Teams Notification Team"
+sidebarTitle: "Teams Notify"
+description: "How to create the Microsoft Teams team and channel that receives hub notifications, and generate its incoming webhook URL."
+---
+
+## Overview
+
+Each hub has a dedicated Microsoft Teams team and channel that receives notifications from the GKL API. This SOP covers creating that team and channel and generating the incoming webhook URL.
+
+---
+
+## Prerequisites
+
+- Microsoft Teams access with permission to create teams.
+- The region code confirmed (e.g. `DE` for Germany). See the [naming convention](/software/third-party/vivenu/general/vivenu-naming-convention).
+
+---
+
+## Creating the Team and Channel
+
+<Steps>
+  <Step title="Create the team">
+    Create a new team named:
+
+    ```
+    FKL <REGION_CODE> PROD
+    ```
+
+    Where `<REGION_CODE>` is the uppercase region code. For example, for Germany this is `FKL DE PROD`.
+  </Step>
+  <Step title="Name the first channel">
+    Set the first channel's name to:
+
+    ```
+    <REGION_CODE> Notifications
+    ```
+
+    For example, for Germany this is `DE Notifications`.
+
+    ![The list of hub notification teams following the naming convention](/images/software/third-party/vivenu/hub-deployment/development/configure-teams-notification/teams-list.png)
+  </Step>
+</Steps>
+
+---
+
+## Generating the Webhook URL
+
+<Steps>
+  <Step title="Open Workflows for the channel">
+    On the new team's first channel, click the **...** dropdown and select **Workflows**.
+
+    ![The channel dropdown menu with the Workflows option](/images/software/third-party/vivenu/hub-deployment/development/configure-teams-notification/channel-dropdown.png)
+  </Step>
+  <Step title="Add the Send webhook workflow">
+    Search for **send webhook** and select **Send webhook alerts to a channel**.
+
+    ![The Workflows search showing the Send webhook alerts to a channel template](/images/software/third-party/vivenu/hub-deployment/development/configure-teams-notification/workflow-search.png)
+  </Step>
+  <Step title="Confirm the team and channel">
+    The default options should already match the team and channel you just created. Confirm they are correct before continuing.
+
+    ![The workflow parameters prefilled with the team and channel](/images/software/third-party/vivenu/hub-deployment/development/configure-teams-notification/workflow-parameters.png)
+  </Step>
+  <Step title="Copy the webhook URL">
+    Copy the webhook URL and save the workflow.
+
+    <Note>
+      Keep the webhook URL safe. It is added to the GKL API configuration in the [New Hub Region SOP](/software/third-party/vivenu/hub-deployment/development/configure-new-hub-region).
+    </Note>
+  </Step>
+</Steps>
+
+---
+
+## Adding Members
+
+<Warning>
+  Do this last. Only add members once the full hub is configured and the seller has been tested, so notifications do not reach the team before the hub is live.
+</Warning>
+
+Add the following roles as members of the team:
+
+- CEO
+- COO
+- CFO
+- Head of Finance
+- Finance Team Members
+- Hub Manager
+- CEL/EC
+- Head of Advanced Tech
+- Development Team within AT
+- Head of Sales & Marketing
+- Sales & Marketing Team Members
