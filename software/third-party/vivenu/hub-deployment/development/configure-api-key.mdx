@@ -1,0 +1,45 @@
+---
+title: "Configuring the API Key"
+sidebarTitle: "API Key"
+description: "How to create the GKL Platform API key on a Vivenu seller."
+---
+
+## Overview
+
+The GKL Platform uses an API key to call Vivenu for a seller. This SOP covers creating that key. It is configured under the **Developer** menu in the left hand sidebar.
+
+![The Developer menu showing Webhooks and API Keys](/images/software/third-party/vivenu/hub-deployment/development/configure-api-key/developer-nav.png)
+
+<Note>
+  This SOP assumes you already know how to access and navigate Vivenu. If you need access, [email support](mailto:advanced-technology-c0a6ecefe97b@intake.linear.app).
+</Note>
+
+---
+
+## Prerequisites
+
+- Vivenu access for the relevant seller, with **API Keys** installed under Developer Tools. See [Adding Developer Tools](/software/third-party/vivenu/general/vivenu-developer-tools).
+
+---
+
+## Adding the API Key
+
+<Steps>
+  <Step title="Open API Keys">
+    Navigate to **Developer > API Keys** and click **Create**.
+
+    ![The API Keys page with the Create button](/images/software/third-party/vivenu/hub-deployment/development/configure-api-key/api-key-create.png)
+  </Step>
+  <Step title="Name the key and set expiration">
+    Set the **Name** to `GKL Platform` and leave **Expiration** as **No expiration**.
+
+    Click **Create**.
+
+    ![The Create API key dialog with name GKL Platform and No expiration](/images/software/third-party/vivenu/hub-deployment/development/configure-api-key/api-key-options.png)
+  </Step>
+  <Step title="Confirm the key is active">
+    The new `GKL Platform` key should now appear in the list with a status of **Active**.
+
+    ![The API Keys list showing GKL Platform active](/images/software/third-party/vivenu/hub-deployment/development/configure-api-key/api-key-result.png)
+  </Step>
+</Steps>

@@ -1,6 +1,6 @@
 ---
 title: "Configuring the Seller Domain (DNS)"
-sidebarTitle: "Seller Domain (DNS)"
+sidebarTitle: "Seller Domain"
 description: "How to connect a custom seller (shop) domain to a Vivenu seller and verify it via DNS in GoDaddy."
 ---
 
@@ -37,7 +37,7 @@ By default a new Vivenu seller is served from an auto-generated `vivenushop.com`
 
     Where `<hub-code>` is the code for your hub. For example, for Germany this is `shop.de.fat-kartingleague.com`.
 
-    ![The Create Domain dialog in Vivenu with the Hostname field](/images/software/vivenu/hub-deployment/development/configure-seller-domain/create-domain.png)
+    ![The Create Domain dialog in Vivenu with the Hostname field](/images/software/third-party/vivenu/hub-deployment/development/configure-seller-domain/create-domain.png)
   </Step>
 </Steps>
 
@@ -56,7 +56,7 @@ After creating the domain, Vivenu displays a single **CNAME** record to add to y
     | Hostname | Host / Name of the CNAME record | `shop.de.fat-kartingleague.com` |
     | CNAME Content | Value / Target / Destination | `domains.vivenu.com` |
 
-    ![The CNAME record details shown by Vivenu](/images/software/vivenu/hub-deployment/development/configure-seller-domain/dns-records.png)
+    ![The CNAME record details shown by Vivenu](/images/software/third-party/vivenu/hub-deployment/development/configure-seller-domain/dns-records.png)
   </Step>
   <Step title="Add the record in GoDaddy">
     In [GoDaddy](https://dcc.godaddy.com/), open the DNS management for `fat-kartingleague.com` and add a new **CNAME** record using the **Hostname** and **CNAME Content** values from the previous step.
@@ -81,6 +81,6 @@ After creating the domain, Vivenu displays a single **CNAME** record to add to y
   <Step title="Set the domain as primary">
     Click **Set as primary** on the custom domain row. It will then show the **PRIMARY** badge, and the default `vivenushop.com` domain will no longer be primary.
 
-    ![The Domains list with the custom domain set as primary](/images/software/vivenu/hub-deployment/development/configure-seller-domain/domains-set-primary.png)
+    ![The Domains list with the custom domain set as primary](/images/software/third-party/vivenu/hub-deployment/development/configure-seller-domain/domains-set-primary.png)
   </Step>
 </Steps>

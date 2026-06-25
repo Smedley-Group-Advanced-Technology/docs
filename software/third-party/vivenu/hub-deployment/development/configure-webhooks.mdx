@@ -1,0 +1,107 @@
+---
+title: "Configuring the Webhooks"
+sidebarTitle: "Webhooks"
+description: "How to create the four webhooks (Event, Ticket, Transaction, Checkout) for a Vivenu seller."
+---
+
+## Overview
+
+Vivenu uses webhooks to notify the GKL Platform of events on a seller. The development team creates **four** webhooks per seller: **Event**, **Ticket**, **Transaction**, and **Checkout**. They are configured under **Developer > Webhooks**.
+
+---
+
+## Prerequisites
+
+- Vivenu access for the relevant seller, with **Webhooks** installed under Developer Tools. See [Adding Developer Tools](/software/third-party/vivenu/general/vivenu-developer-tools).
+- The hub code confirmed (e.g. `de` for Germany, `us-ca` for US California). See the [naming convention](/software/third-party/vivenu/general/vivenu-naming-convention).
+- The HMAC key for this hub generated and recorded in the database configuration (covered in a separate SOP).
+
+---
+
+## Naming convention
+
+Name each webhook using the format:
+
+```
+{CONTROLLER} {REGION_CODE} {ENV}
+```
+
+Where `{CONTROLLER}` is `Event`, `Ticket`, `Transaction`, or `Checkout`, `{REGION_CODE}` is the uppercase hub code, and `{ENV}` is `PROD`. For example, the checkout webhook for Germany is `Checkout DE PROD`.
+
+---
+
+## URL
+
+Each webhook uses the same host and stage, changing only the controller segment and the `hubRegion` query parameter:
+
+```
+https://en6js5j9r3.execute-api.eu-west-2.amazonaws.com/prod/api/v1/{Controller}/webhook?hubRegion={REGION_CODE}
+```
+
+Note the controller segment in the URL is **plural** (`Events`, `Tickets`, `Transactions`, `Checkouts`) while the webhook name is singular. `{REGION_CODE}` is the uppercase hub code, e.g. `DE`.
+
+---
+
+## Creating each webhook
+
+Repeat the following for all four webhooks.
+
+<Steps>
+  <Step title="Open the Create webhook dialog">
+    Navigate to **Developer > Webhooks** and click **Create**.
+
+    ![The Create webhook dialog](/images/software/third-party/vivenu/hub-deployment/development/configure-webhooks/create-webhook.png)
+  </Step>
+  <Step title="Set the name and URL">
+    Enter the **Name** and **URL** for this webhook using the conventions above, taking the controller segment and events from the [webhook reference](#webhook-reference) table.
+  </Step>
+  <Step title="Set the HMAC key">
+    Take the HMAC key recorded in the database configuration for this hub, **base64 encode** it, and paste the encoded value into the **HMAC Key** field.
+
+    <Warning>
+      Do not use the **Generate HMAC Key** button in Vivenu. The key must match the value stored in the database configuration so the receiving API can validate incoming webhooks.
+    </Warning>
+  </Step>
+  <Step title="Select the events">
+    Under **Events**, select the events for this webhook as listed in the [webhook reference](#webhook-reference) below.
+  </Step>
+  <Step title="Activate and save">
+    Enable the **Active** toggle at the top of the dialog, then click **Save Changes**.
+  </Step>
+</Steps>
+
+---
+
+## Webhook reference
+
+| Webhook name | URL controller segment | Events |
+|--|--|--|
+| `Event {REGION} PROD` | `Events` | `event.created`, `event.updated`, `event.deleted` |
+| `Ticket {REGION} PROD` | `Tickets` | `ticket.created`, `ticket.updated` |
+| `Transaction {REGION} PROD` | `Transactions` | `transaction.complete`, `transaction.reservedBySystem`, `transaction.canceled`, `transaction.partiallyCanceled` |
+| `Checkout {REGION} PROD` | `Checkouts` | `checkout.completed`, `checkout.aborted`, `checkout.detailsSubmitted` |
+
+The selected events for each webhook should match the screenshots below.
+
+<Steps>
+  <Step title="Event webhook">
+    ![The selected events for the Event webhook](/images/software/third-party/vivenu/hub-deployment/development/configure-webhooks/event-events.png)
+  </Step>
+  <Step title="Ticket webhook">
+    ![The selected events for the Ticket webhook](/images/software/third-party/vivenu/hub-deployment/development/configure-webhooks/ticket-events.png)
+  </Step>
+  <Step title="Transaction webhook">
+    ![The selected events for the Transaction webhook](/images/software/third-party/vivenu/hub-deployment/development/configure-webhooks/transaction-events.png)
+  </Step>
+  <Step title="Checkout webhook">
+    ![The selected events for the Checkout webhook](/images/software/third-party/vivenu/hub-deployment/development/configure-webhooks/checkout-events.png)
+  </Step>
+</Steps>
+
+---
+
+## Confirming the webhooks
+
+Once all four are saved, the **Webhooks** list should show each one as active.
+
+![The Webhooks list showing all four webhooks active](/images/software/third-party/vivenu/hub-deployment/development/configure-webhooks/webhooks-result.png)

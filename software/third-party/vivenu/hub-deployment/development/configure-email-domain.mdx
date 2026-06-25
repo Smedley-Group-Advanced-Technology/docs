@@ -1,0 +1,115 @@
+---
+title: "Configuring the Email Domain (DNS)"
+sidebarTitle: "Email Domain"
+description: "How to add and verify a custom email sender domain for a Vivenu seller via DNS in GoDaddy, then create and set the primary sender."
+---
+
+## Overview
+
+Vivenu sends customer emails from a verified sender domain. This SOP covers adding a branded email domain to the seller, verifying ownership through DNS records in GoDaddy, creating the `hello` sender, and setting it as the primary sender.
+
+<Note>
+  This SOP assumes you already know how to access and navigate Vivenu. If you need access, [email support](mailto:advanced-technology-c0a6ecefe97b@intake.linear.app).
+</Note>
+
+---
+
+## Prerequisites
+
+- Vivenu access for the relevant seller
+- Access to the `fat-kartingleague.com` DNS in [GoDaddy](https://dcc.godaddy.com/)
+- The hub code confirmed (e.g. `de` for Germany, `us-ca` for US California). See the [naming convention](/software/third-party/vivenu/general/vivenu-naming-convention) for how hub codes are assigned.
+
+---
+
+## Adding the Email Domain
+
+<Steps>
+  <Step title="Open E-Mail Senders">
+    Navigate to **Settings > Communication > E-Mail Senders**.
+  </Step>
+  <Step title="Add the domain">
+    Under **Manage sender addresses**, click **Add domain** and enter the domain using the convention:
+
+    ```
+    <hub-code>.fat-kartingleague.com
+    ```
+
+    Where `<hub-code>` is the code for your hub. For example, for Germany this is `de.fat-kartingleague.com`.
+
+    Click **Create domain**.
+
+    ![The Add new domain dialog in Vivenu](/images/software/third-party/vivenu/hub-deployment/development/configure-email-domain/add-domain.png)
+  </Step>
+</Steps>
+
+---
+
+## Verifying the Domain
+
+The new domain shows as **VERIFICATION PENDING** until its DNS records are added and verified.
+
+![The unverified domain with the Verify domain button](/images/software/third-party/vivenu/hub-deployment/development/configure-email-domain/domain-unverified.png)
+
+<Steps>
+  <Step title="Open the DNS records">
+    Click **Verify domain**. Vivenu displays two records to add: a **DKIM** record and a **ReturnPath** record.
+
+    ![The DKIM and ReturnPath DNS records shown by Vivenu](/images/software/third-party/vivenu/hub-deployment/development/configure-email-domain/dns-records.png)
+  </Step>
+  <Step title="Add both records in GoDaddy">
+    In [GoDaddy](https://dcc.godaddy.com/), open the DNS management for `fat-kartingleague.com` and add both records exactly as Vivenu provides them:
+
+    | Record | DNS Record Type | Hostname | Value |
+    |--|--|--|--|
+    | DKIM | TXT | `<selector>._domainkey.<hub-code>` | The `k=rsa; p=...` value from Vivenu |
+    | ReturnPath | CNAME | `pm-bounces.<hub-code>` | `pm.mtasv.net` |
+
+    <Note>
+      Omit the `.fat-kartingleague.com` part from each Hostname. GoDaddy appends the root domain automatically, so the fully qualified records resolve to `<selector>._domainkey.<hub-code>.fat-kartingleague.com` and `pm-bounces.<hub-code>.fat-kartingleague.com`.
+    </Note>
+  </Step>
+  <Step title="Verify and wait for propagation">
+    Back in Vivenu, click **Verify** to request verification. DNS changes can take time to propagate, so if verification does not succeed immediately, wait and try again until the domain shows **VERIFIED**.
+  </Step>
+</Steps>
+
+---
+
+## Adding a Sender
+
+Once the domain is verified, add a sender address within it.
+
+<Steps>
+  <Step title="Open the Add sender dialog">
+    On the verified domain, click **Add sender**.
+  </Step>
+  <Step title="Set the sender details">
+    Complete the fields as follows:
+
+    | Field | Value |
+    |--|--|
+    | "From" E-Mail | `hello` (the `@<hub-code>.fat-kartingleague.com` domain is filled automatically and cannot be changed) |
+    | "From" Name | `FAT Karting League` |
+    | "Reply To" E-Mail | `hello@fat-kartingleague.com` |
+
+    Click **Create sender**.
+
+    ![The Add new sender dialog in Vivenu](/images/software/third-party/vivenu/hub-deployment/development/configure-email-domain/add-sender.png)
+  </Step>
+</Steps>
+
+---
+
+## Setting the Primary Sender
+
+<Steps>
+  <Step title="Select the new sender">
+    Under **Primary sender**, open the **E-Mail Senders** dropdown and change it from the default to the sender you just created.
+  </Step>
+  <Step title="Save">
+    Click **Save**. The primary sender should now read `FAT Karting League <hello@<hub-code>.fat-kartingleague.com>`.
+
+    ![The E-Mail Senders page with the verified domain, sender, and primary sender set](/images/software/third-party/vivenu/hub-deployment/development/configure-email-domain/email-senders-verified.png)
+  </Step>
+</Steps>

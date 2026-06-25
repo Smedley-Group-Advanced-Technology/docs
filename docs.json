@@ -235,10 +235,20 @@
 					  "group": "Hub Deployment",
 					  "pages": [
 						"software/third-party/vivenu/hub-deployment/vivenu-setting-up-a-new-hub",
+						"software/third-party/vivenu/hub-deployment/request-new-seller",
 						{
 						  "group": "Development Team",
 						  "pages": [
-							"software/third-party/vivenu/hub-deployment/development/configure-seller-domain"
+							"software/third-party/vivenu/hub-deployment/development/configure-seller-domain",
+							"software/third-party/vivenu/hub-deployment/development/configure-email-domain",
+							"software/third-party/vivenu/hub-deployment/development/arrange-shop-redirect",
+							"software/third-party/vivenu/hub-deployment/development/configure-teams-notification",
+							"software/third-party/vivenu/hub-deployment/development/configure-api-key",
+							"software/third-party/vivenu/hub-deployment/development/configure-new-hub-region",
+							"software/third-party/vivenu/hub-deployment/development/configure-webhooks",
+							"software/third-party/vivenu/hub-deployment/development/configure-talentid-integration",
+							"software/third-party/vivenu/hub-deployment/development/configure-telemetry-regions",
+							"software/third-party/vivenu/hub-deployment/development/test-setup"
 						  ]
 						},
 						"software/third-party/vivenu/hub-deployment/vivenu-configure-new-seller",
